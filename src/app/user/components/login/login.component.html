@@ -1,0 +1,26 @@
+<mat-card [formGroup]="loginForm" class="main-form">
+  <mat-card-title>Connexion</mat-card-title>
+
+  <mat-card class="form-card" >
+    <div class="form-row">
+
+      <mat-form-field appearance="fill">
+        <mat-label>Login</mat-label>
+        <input autocomplete="name" type="text" matInput formControlName="username">
+        <mat-error>ce champ est requis</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input autocomplete="none" type="password" matInput formControlName="password">
+        <mat-error>ce champ est requis</mat-error>
+      </mat-form-field>
+    </div>
+
+  </mat-card>
+
+
+    <button mat-flat-button color="primary" (click)="authenticateTheUser()" [disabled]="!loginForm.valid">ENREGISTRER</button>
+
+
+</mat-card>

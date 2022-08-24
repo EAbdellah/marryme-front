@@ -1,0 +1,136 @@
+<mat-card [formGroup]="mainForm" class="main-form">
+  <mat-card-title>Inscription</mat-card-title>
+
+  <mat-card class="form-card" [formGroup]="personalInfoForm">
+
+    <mat-card-subtitle>Informations personnelles</mat-card-subtitle>
+
+    <div class="form-row">
+
+      <mat-form-field appearance="fill">
+        <mat-label>Prénom</mat-label>
+        <input autocomplete="name" type="text" matInput formControlName="firstName">
+        <mat-error>ce champ est requis</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Nom</mat-label>
+        <input autocomplete="none" type="text" matInput formControlName="lastName">
+        <mat-error>ce champ est requis</mat-error>
+      </mat-form-field>
+    </div>
+    <mat-card-subtitle>Adresse légale</mat-card-subtitle>
+
+    <div class="form-row">
+
+      <mat-form-field appearance="fill">
+        <mat-label>Pays</mat-label>
+        <input autocomplete="country" type="text" matInput formControlName="country">
+        <mat-error>ce champ est requis</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Ville</mat-label>
+        <input autocomplete="address-level2" matInput formControlName="city">
+        <mat-error>ce champ est requis</mat-error>
+      </mat-form-field>
+
+    </div>
+      <div class="form-row">
+      <mat-form-field appearance="fill">
+        <mat-label>Code postal</mat-label>
+        <input type="text" autocomplete="postal-code" matInput formControlName="postalCode">
+        <mat-error>ce champ est requis</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Rue</mat-label>
+        <input autocomplete="address-line1" type="text" matInput formControlName="street">
+        <mat-error>ce champ est requis</mat-error>
+      </mat-form-field>
+
+      </div>
+    <div class="form-row">
+      <mat-form-field appearance="fill">
+        <mat-label>Numero</mat-label>
+        <input type="text" autocomplete="none" matInput formControlName="houseNumber">
+        <mat-error>ce champ est requis</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>boite n°</mat-label>
+        <input type="text" autocomplete="none" matInput formControlName="box">
+      </mat-form-field>
+
+    </div>
+    <mat-card-subtitle>Téléphone</mat-card-subtitle>
+    <div class="form-row">
+      <mat-form-field appearance="fill">
+        <mat-label>Numéro de téléphone</mat-label>
+        <input digitOnly  autocomplete="phone" matInput formControlName="phone">
+        <mat-error>{{getFormControlErrorText(personalInfoForm.controls['phone'])}}</mat-error>
+      </mat-form-field>
+    </div>
+
+  </mat-card>
+
+
+
+  <mat-card class="form-card" [formGroup]="emailForm">
+    <mat-card-subtitle>Email</mat-card-subtitle>
+    <div class="form-row">
+      <mat-form-field appearance="fill">
+        <mat-label>Adresse Mail</mat-label>
+        <input type="text" autocomplete="email" matInput formControlName="email">
+        <mat-error>{{getFormControlErrorText(emailCtrl)}}</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Confirmer l'adresse mail</mat-label>
+        <input type="text" autocomplete="none" matInput formControlName="confirm">
+        <mat-error>{{getFormControlErrorText(confirmEmailCtrl)}}</mat-error>
+      </mat-form-field>
+    </div>
+    <small class="error-text" *ngIf="showEmailError$ | async">Les deux adresses ne correspondent pas</small>
+  </mat-card>
+
+
+  <mat-card class="form-card" [formGroup]="loginInfoForm">
+    <mat-card-subtitle>Informations de connexion</mat-card-subtitle>
+    <mat-card-subtitle>* Doit contenir au moins 8 caracteres dont une minuscule, une majuscule et un nombre</mat-card-subtitle>
+    <div class="form-row">
+      <mat-form-field appearance="fill">
+        <mat-label>Mot de passe</mat-label>
+        <input type="password" autocomplete="none" matInput formControlName="password">
+<!--        <mat-error>ce champ est requis</mat-error>-->
+        <mat-error>{{getFormControlErrorText(passwordCtrl)}}</mat-error>
+
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Confirmer votre mot de passe</mat-label>
+        <input type="password" autocomplete="none" matInput formControlName="confirmPassword">
+        <mat-error>ce champ est requis</mat-error>
+
+      </mat-form-field>
+    </div>
+    <small class="error-text" *ngIf="showPasswordError$ | async">Les mots de passe ne correspondent pas</small>
+  </mat-card>
+
+
+  <mat-card class="form-card">
+    <mat-card-subtitle>Comment préférez-vous que l'on vous contacte ?</mat-card-subtitle>
+    <mat-card class="form-card">
+      <mat-radio-group [formControl]="contactPreferenceCtrl">
+        <mat-radio-button value="email">Mail</mat-radio-button>
+        <mat-radio-button value="phone">Téléphone</mat-radio-button>
+      </mat-radio-group>
+    </mat-card>
+  </mat-card>
+
+
+  <mat-card-actions *ngIf="mainForm.valid">
+    <button mat-flat-button color="primary" (click)="onSubmitForm()" [disabled]="loading">ENREGISTRER</button>
+  </mat-card-actions>
+
+  <mat-spinner *ngIf="loading" color="primary" mode="indeterminate"></mat-spinner>
+
+</mat-card>
