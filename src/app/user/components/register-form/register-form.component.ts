@@ -52,22 +52,12 @@ export class RegisterFormComponent implements OnInit {
       phone:  this.personalInfoForm.get('phone'),
       email: this.emailForm.get('email'),
       password: this.loginInfoForm.get('password'),
-      contactPreference: this.contactPreferenceCtrl
+      contactPreference: this.contactPreferenceCtrl.value
 
-
-
-
-      // personalInfo: this.personalInfoForm,
-      // contactPreference: this.contactPreferenceCtrl,
-      // email: this.emailForm,
-      // // phone: this.phoneCtrl,
-      // loginInfo: this.loginInfoForm
     });
   }
 
   private initFormControls(): void {
-    // this.phoneCtrl = this.formBuilder.control(['',Validators.required, Validators.minLength(10),
-    //   Validators.maxLength(10)]);
 
     this.personalInfoForm = this.formBuilder.group({
       firstName: ['', Validators.required],
@@ -85,9 +75,7 @@ export class RegisterFormComponent implements OnInit {
     this.contactPreferenceCtrl = this.formBuilder.control('email');
 
     this.emailCtrl = this.formBuilder.control('',Validators.email);
-
     this.confirmEmailCtrl = this.formBuilder.control('',Validators.email);
-
     this.emailForm = this.formBuilder.group({
       email: this.emailCtrl,
       confirm: this.confirmEmailCtrl
@@ -97,13 +85,8 @@ export class RegisterFormComponent implements OnInit {
     });
 
 
-      // .addValidators([Validators.required, Validators.minLength(10),
-      // Validators.maxLength(10)]);
-
     this.passwordCtrl = this.formBuilder.control('',[ Validators.required,AtLeast()]);
-
     this.confirmPasswordCtrl = this.formBuilder.control('', Validators.required);
-
     this.loginInfoForm = this.formBuilder.group({
       password: this.passwordCtrl,
       confirmPassword: this.confirmPasswordCtrl
@@ -148,23 +131,13 @@ export class RegisterFormComponent implements OnInit {
     this.confirmEmailCtrl.updateValueAndValidity();
   }
 
-  // private setPhoneValidators(showPhoneCtrl: boolean) {
-  //   if (showPhoneCtrl) {
-  //     this.phoneCtrl.addValidators([
-  //       Validators.required,
-  //       Validators.minLength(10),
-  //       Validators.maxLength(10)
-  //     ]);
-  //   } else {
-  //     this.phoneCtrl.clearValidators();
-  //   }
-  //   this.phoneCtrl.updateValueAndValidity();
-  // }
+
 
   onSubmitForm() {
     this.loading = true;
     this.userService.saveUserInfo(this.mainForm.value).pipe(
       tap(saved => {
+        console.log(this.mainForm.value)
         this.loading = false;
         if (saved) {
           this.resetForm();

@@ -71,7 +71,6 @@
         <mat-error>{{getFormControlErrorText(personalInfoForm.controls['phone'])}}</mat-error>
       </mat-form-field>
     </div>
-
   </mat-card>
 
 
@@ -86,7 +85,7 @@
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Confirmer l'adresse mail</mat-label>
-        <input type="text" autocomplete="none" matInput formControlName="confirm">
+        <input type="text" autocomplete="email" matInput formControlName="confirm">
         <mat-error>{{getFormControlErrorText(confirmEmailCtrl)}}</mat-error>
       </mat-form-field>
     </div>
