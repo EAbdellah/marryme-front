@@ -13,7 +13,6 @@ import {UserService} from "../../services/user-service";
 export class LoginComponent implements OnInit {
 
   loading =false;
-
   loginForm!: FormGroup;
   usernameCtrl!: FormControl;
   pwdCtrl!: FormControl;
