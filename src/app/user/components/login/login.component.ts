@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthenticationService} from "../../services/authentication.service";
-import {Observable} from "rxjs";
+import {catchError, map, Observable, of, tap, throwError} from "rxjs";
 import {UserService} from "../../services/user-service";
+import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
+import {User} from "../../models/user.model";
+import {HeaderType} from "../../../enum/header-type.enum";
 
 @Component({
   selector: 'app-login',
@@ -12,13 +15,15 @@ import {UserService} from "../../services/user-service";
 })
 export class LoginComponent implements OnInit {
 
-  loading =false;
+  loading = false;
   loginForm!: FormGroup;
   usernameCtrl!: FormControl;
   pwdCtrl!: FormControl;
+  showLoading!: boolean;
 
 
-  constructor(private formBuilder: FormBuilder, private authenticationService: AuthenticationService) { }
+  constructor(private formBuilder: FormBuilder, private authService: AuthenticationService,private userService: UserService, private router: Router) {
+  }
 
 
   ngOnInit(): void {
@@ -26,17 +31,62 @@ export class LoginComponent implements OnInit {
   }
 
   private initMainForm(): void {
-    this.usernameCtrl = this.formBuilder.control('',Validators.required);
-    this.pwdCtrl = this.formBuilder.control('',Validators.required);
+    this.usernameCtrl = this.formBuilder.control('', Validators.required);
+    this.pwdCtrl = this.formBuilder.control('', Validators.required);
 
     this.loginForm = this.formBuilder.group({
-      username:this.usernameCtrl,
-      password:this.pwdCtrl
+      username: this.usernameCtrl,
+      password: this.pwdCtrl
     })
   }
 
 
   authenticateTheUser() {
-    console.log(JSON.stringify(this.loginForm.value))
+    // console.log(JSON.stringify(this.loginForm.value))
+    // this.userService.login(this.usernameCtrl.value,this.pwdCtrl.value).pipe(tap(
+    //
+    //
+    //
+    //   saved => {
+    //     console.log(this.loginForm.value)
+    //     this.loading = false;
+    //     if (!saved) {
+    //       console.error('Echec du login');
+    //     }
+    //   }
+    //   )
+    // ).subscribe();
+    // this.router.navigateByUrl("/marryme")
+    //
+    //0
+    //
+
+
+    this.showLoading = true;
+
+    this.authService.login(this.usernameCtrl.value, this.pwdCtrl.value)
+      .subscribe({
+        // complete: () => {  },
+        error: (errorResponse: HttpErrorResponse) => {
+          console.log(errorResponse)
+          this.showLoading = false;
+
+        },
+        next: (response: HttpResponse<User>) => {
+          const token = response.headers.get(HeaderType.JWT_TOKEN);
+          console.log("****response: "+JSON.stringify(response.headers.keys()))
+          console.log("****body: "+JSON.stringify(response.body))
+
+          console.log("****token: "+token)
+          // @ts-ignore
+          this.authService.saveToken(token);
+          // @ts-ignore
+          this.authService.addUserToLocalCache(response.body);
+          this.router.navigateByUrl('/user/management');
+          this.showLoading = false;
+        },
+      });
+
+
   }
 }

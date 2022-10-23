@@ -1,57 +1,102 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {BehaviorSubject, first, map, Observable} from "rxjs";
+import {HttpClient, HttpResponse} from "@angular/common/http";
+import {BehaviorSubject, catchError, delay, first, map, mapTo, Observable, of, tap} from "rxjs";
+import {environment} from "../../../environments/environment";
+import {JwtHelperService} from "@auth0/angular-jwt";
+import {RegisterFormValueModel} from "../models/register-form-value.model";
+import {User} from "../models/user.model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
+  public host = environment.apiUrl;
+  private token!: string  ;
+  private loggedInUsername!: string ;
+  private jwtHelper = new JwtHelperService();
+  public isAuthenticated$!: Observable<boolean> ;
 
 
   constructor(private http: HttpClient) {}
 
+  saveUserInfo(formValue: RegisterFormValueModel): Observable<boolean> {
+    return this.http.post(`${this.host}/user/register`,formValue).pipe(
+      tap(x=>console.info(x)),
+      mapTo(true),
+      delay(1000),
+      catchError(() => of(false).pipe(
+        delay(1000)
+      ))
+    );
+  }
 
 
-  // private auth: BehaviorSubject<{ id: any, token: any, username: any }> = new BehaviorSubject<{ id: any, token: any, username: any }>(this.getUserData());
-  //
-  // public readonly username: Observable<string> = this.auth.asObservable().pipe(
-  //   map(value => {
-  //     if (value === undefined || value === null) {
-  //       return '';
-  //     } else {
-  //       return value.username;
-  //     }
-  //   }));
-  //
-  // getUserData(): { id: number, username: string, token: string } {
-  //   return JSON.parse(<string>sessionStorage.getItem('currentUser'));
+  public login(email:string, password:string): Observable<HttpResponse<User>> {
+    const crendential = { email, password };
+    return this.http.post<User>(`${this.host}/user/login`, crendential, { observe: 'response' });
+  }
+
+
+  // public register(user: User): Observable<User> {
+  //   return this.http.post<User>(`${this.host}/user/register`, user);
   // }
-  //
-  // isLoggedIn(): boolean {
-  //   return !!(sessionStorage.getItem('currentUser'));
-  // }
-  //
-  // login(username: string, password: string): Observable<void> {
-  //   return this.http
-  //     .post<any>("this.url_authentication", {username: username, password: password})
-  //     .pipe(
-  //       first(),
-  //       map((res: any) => {
-  //         // login successful if there's a jwt token in the response
-  //         if (res && res.token && res.username && res.id) {
-  //           sessionStorage.setItem('currentUser', JSON.stringify({
-  //             id: res.id,
-  //             token: res.token,
-  //             username: res.username
-  //           }));
-  //         }
-  //
-  //         this.auth.next({id: res.id, token: res.token, username: res.username});
-  //       }));
-  // }
-  //
-  // logout() {
-  //
-  // }
+
+  public logOut(): void {
+    // @ts-ignore
+    this.token = null;
+    // @ts-ignore
+    this.loggedInUsername = null;
+    localStorage.removeItem('user');
+    localStorage.removeItem('token');
+    localStorage.removeItem('users');
+  }
+
+  public saveToken(token: string ): void {
+    // @ts-ignore
+    this.token = token;
+    // @ts-ignore
+    localStorage.setItem('token', token);
+
+  }
+
+  public addUserToLocalCache(user: User ): void {
+    localStorage.setItem('user', JSON.stringify(user));
+  }
+
+  public getUserFromLocalCache(): User {
+    return JSON.parse(<string>localStorage.getItem('user'));
+  }
+
+  public loadToken(): void {
+    // @ts-ignore
+    this.token = localStorage.getItem('token');
+  }
+
+  public getToken(): string {
+    return <string>this.token;
+  }
+
+  // @ts-ignore
+  public isUserLoggedIn(): boolean {
+    this.loadToken();
+    if (this.token != null && this.token !== ''){
+      if (this.jwtHelper.decodeToken(this.token).sub != null || '') {
+        if (!this.jwtHelper.isTokenExpired(this.token)) {
+          this.loggedInUsername = this.jwtHelper.decodeToken(this.token).sub;
+          return true;
+        }
+      }
+    } else {
+      this.logOut();
+      return false;
+    }
+  }
+
+  public isAuthenticate():Observable<boolean>{
+    return this.isAuthenticated$.pipe(
+      map(x=> this.isUserLoggedIn())
+    )
+  }
+
 }

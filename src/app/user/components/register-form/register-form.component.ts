@@ -4,6 +4,8 @@ import {confirmEqualValidator} from "../../validators/confirm-equal.validator";
 import {map, Observable, startWith, tap} from "rxjs";
 import {AtLeast} from "../../validators/at-least.valisator";
 import {UserService} from "../../services/user-service";
+import {Router} from "@angular/router";
+import {AuthenticationService} from "../../services/authentication.service";
 
 @Component({
   selector: 'app-register-form',
@@ -31,7 +33,7 @@ export class RegisterFormComponent implements OnInit {
   showPasswordError$!: Observable<boolean>;
 
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService) { }
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private authService: AuthenticationService, private router: Router) { }
 
   ngOnInit(): void {
     this.initFormControls();
@@ -135,7 +137,7 @@ export class RegisterFormComponent implements OnInit {
 
   onSubmitForm() {
     this.loading = true;
-    this.userService.saveUserInfo(this.mainForm.value).pipe(
+    this.authService.saveUserInfo(this.mainForm.value).pipe(
       tap(saved => {
         console.log(this.mainForm.value)
         this.loading = false;
@@ -146,6 +148,7 @@ export class RegisterFormComponent implements OnInit {
         }
       })
     ).subscribe();
+    this.router.navigateByUrl("/marryme/login")
   }
 
   private resetForm() {

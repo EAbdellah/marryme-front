@@ -4,13 +4,15 @@ import { RegisterFormComponent } from './components/register-form/register-form.
 import {UserRoutingModule} from "./user-routing.module";
 import {SharedModule} from "../shared/shared.module";
 import { LoginComponent } from './components/login/login.component';
+import { HomeComponent } from './components/home/home.component';
 
 
 
 @NgModule({
   declarations: [
     RegisterFormComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,

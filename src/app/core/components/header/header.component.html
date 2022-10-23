@@ -1,9 +1,66 @@
-<mat-toolbar color="primary">
-  <span>AwSome Component</span>
-  <ul>
-    <li><a routerLink="/social-media">Social Media</a></li>
-    <li><a routerLink="/complex-form">Complex Form</a></li>
-    <li><a routerLink="/reactive-state">Reactive State</a></li>
-  </ul>
+<!--<mat-toolbar color="primary">-->
+<!--  <a routerLink="marryme/">MarryMe</a>-->
+<!--  <ul>-->
+<!--    <li><a routerLink="marryme/register">Register</a></li>-->
+<!--    <li><a routerLink="/complex-form">Complex Form</a></li>-->
+<!--    <li><a routerLink="/reactive-state">Reactive State</a></li>-->
+<!--  </ul>-->
+<!--</mat-toolbar>-->
+
+<mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center">
+  <span>
+    <button mat-button routerLink="/">{{title}}</button>
+    <button mat-button routerLink="/"><mat-icon>home</mat-icon></button>
+  </span>
+  <span class="example-spacer"></span>
+
+
+  <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+    <button mat-button routerLink="marryme/login" *ngIf="!isloged()">
+      <mat-icon>login</mat-icon>
+      Login
+    </button>
+
+    <button mat-button routerLink="marryme/register" *ngIf="!isloged()" >
+      <mat-icon>power_settings_new</mat-icon>
+      register
+    </button>
+
+    <button  mat-button *ngIf="isloged()" (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      lougout
+    </button>
+
+    <button  mat-button *ngIf="isloged()">
+      <mat-icon>account_circle</mat-icon>
+      Profil
+    </button>
+
+
+
+  </div>
+<!--  <button mat-button [matMenuTriggerFor]="menu" fxHide="false" fxHide.gt-sm>-->
+<!--    <mat-icon>menu</mat-icon>-->
+<!--  </button>-->
 </mat-toolbar>
 
+
+
+<!--<mat-menu x-position="before" #menu="matMenu">-->
+<!--  <button mat-menu-item routerLink="/">-->
+<!--    <mat-icon>home</mat-icon>-->
+<!--    Home-->
+<!--  </button>-->
+<!--  <button mat-menu-item routerLink="/game">-->
+<!--    <mat-icon>gamepad</mat-icon>-->
+<!--    Play-->
+<!--  </button>-->
+<!--  <button mat-menu-item routerLink="/login" *ngIf="!isAuthenticated">-->
+<!--    <mat-icon>power_settings_new</mat-icon>-->
+<!--    Login-->
+<!--  </button>-->
+<!--  <button mat-menu-item *ngIf="isAuthenticated" (click)="logout()">-->
+<!--    <mat-icon>exit_to_app</mat-icon>-->
+<!--    Logout-->
+<!--  </button>-->
+<!--</mat-menu>-->
