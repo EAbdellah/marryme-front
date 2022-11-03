@@ -1,0 +1,31 @@
+export interface AllServicesDTO {
+  serviceID: number;
+  type: string;
+  nom: string;
+  image?: string;
+  doHair?: boolean;
+  doMakeUp?: boolean;
+  doMan?: boolean;
+  doWoman?: boolean;
+  isPhoto?: boolean;
+  isVideo?: boolean;
+  doAlbum?: boolean;
+  doSouvenir?: boolean;
+  musiqueType?: string;
+  capaciteTotal?: number;
+  placeAssise?: number;
+  pisteDance?: boolean;
+  decoration?: boolean;
+  materielMusique?: boolean;
+  traiteur?: boolean;
+  cuisine?: boolean;
+  isExternal?: boolean;
+  hallTypeEntity?: string;
+  haveParking?: boolean;
+  manOnly?: boolean;
+  womanOnly?: boolean;
+  doMeat?: boolean;
+  doFish?: boolean;
+  doVegan?: boolean;
+  doVegetarian?: boolean;
+}

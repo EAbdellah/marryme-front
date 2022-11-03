@@ -1,0 +1,42 @@
+
+.search-bar {
+  width: 50%;
+  margin-left: 25%;
+  margin-right: auto;
+}
+
+.side{
+  width: 15%;
+  //display: flex; /* or inline-flex */
+
+}
+
+.mat-card-lg-image{
+  //width: 100%;
+  //height: 100%;
+}
+
+:host {
+  ::ng-deep {
+    .mat-form-field-appearance-fill .mat-form-field-flex {
+
+        border-radius: 28px 28px 28px 28px;
+    }
+  }
+}
+
+
+#div-flex-left{
+ width: 100%;
+}
+
+
+
+#description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 5; /* number of lines to show */
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}

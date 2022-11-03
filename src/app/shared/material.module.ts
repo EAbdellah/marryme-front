@@ -10,10 +10,26 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatRadioModule} from "@angular/material/radio";
 import { MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { MatMenuModule} from '@angular/material/menu';
+import {MatDrawerContainer, MatSidenavModule} from "@angular/material/sidenav";
+import {MatDatepickerModule, MatDatepickerInput} from "@angular/material/datepicker";
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatNativeDateModule} from "@angular/material/core";
+import {
+  MAT_MOMENT_DATE_ADAPTER_OPTIONS,
+  MAT_MOMENT_DATE_FORMATS,
+  MomentDateAdapter
+} from "@angular/material-moment-adapter";
+import 'moment/locale/fr';
+import {MatTabsModule} from "@angular/material/tabs";
+import {MatGridListModule} from "@angular/material/grid-list";
 
 
 @NgModule({
+  providers: [
+  {provide: MAT_DATE_LOCALE, useValue: 'fr-FR'},
+  {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
+],
   exports:[
+    MatSidenavModule,
     MatToolbarModule,
     MatCardModule,
     MatListModule,
@@ -24,6 +40,10 @@ import { MatMenuModule} from '@angular/material/menu';
     MatCheckboxModule,
     MatRadioModule,
     MatProgressSpinnerModule,
-    MatMenuModule
+    MatMenuModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatTabsModule,
+    MatGridListModule
   ]
 }) export class MaterialModule{}
