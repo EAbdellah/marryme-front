@@ -1,4 +1,4 @@
-<div class="face-snap-card" *ngIf="services$ | async as service ">
+<div class="face-snap-card" *ngIf="services$ | async as service ;">
   <p>Bienvenu chez: {{service?.nom}}</p>
 
   <div class="container-div">
@@ -13,37 +13,68 @@
       </mat-form-field>
 
       <div class="example-events">
-      <!--  <div *ngFor="let e of events">{{e}}</div>-->
+        <!--  <div *ngFor="let e of events">{{e}}</div>-->
+
+        <div *ngIf="chosingDate ">
+
         Vous avez selectioné: {{chosingDate}}
+        </div>
+
+          <div *ngIf="basicPrice ">
+
+        <div>-------------------------- </div>
+        Prix de base: {{basicPrice}}
+          </div>
+
+
+
+          <div *ngIf="daySup()!= 0 && daySup() ">
+          <div>--------------------------- </div>
+          Supplement: {{daySup()}}
+        </div>
+
+        <div *ngIf="daySup()!= 0 && daySup()">
+        <div>-------------------------- </div>
+        <div>Justifiction :{{dayType()}} </div>
+        </div>
+
+        <div *ngIf="basicPrice ">
+          <div>-------------------------- </div>
+          Total :{{daySup()+basicPrice}}
+        </div>
+
+
+
       </div>
     </div>
 
-    <!--<mat-tab-group dynamicHeight>-->
-    <!--  <mat-tab label="Short tab">-->
-    <!--    <div class="example-small-box mat-elevation-z4">-->
-    <!--      Small content-->
-    <!--    </div>-->
-    <!--  </mat-tab>-->
-    <!--  <mat-tab label="Long tab">-->
-    <!--    <div class="example-large-box mat-elevation-z4">-->
-    <!--      Large content-->
-    <!--    </div>-->
-    <!--  </mat-tab>-->
-    <!--</mat-tab-group>-->
     <div class="formules-div">
-<!--      <mat-form-field appearance="fill">-->
-<!--        <mat-label>Selected tab index</mat-label>-->
-<!--        <input matInput type="number" [formControl]="selected">-->
-<!--      </mat-form-field>-->
 
 
       <mat-tab-group [selectedIndex]="selected.value"
-                     (selectedIndexChange)="selected.setValue($event)">
-        <mat-tab *ngFor="let formule of service?.formules; index as index; "  [label]="'Formule '+ (index+1)" >
-          <div class="example-large-box mat-elevation-z4">
-            <img mat-card-image src="https://provins.net/wp-content/uploads/2020/07/chateau-de-la-motte-tilly-provins-photo-cmn-6-880x562.jpg" alt="Photo of a Shiba Inu">
+                     (selectedIndexChange)="selected.setValue($event)"
+                     #tabGroup
+                     (selectedTabChange)="tabChanged($event)"
+        >
+
+        <mat-tab [label]="'Description'" >
+          <div class="example-large-box mat-elevation-z4" >
+            <img mat-card-image
+                 src="https://provins.net/wp-content/uploads/2020/07/chateau-de-la-motte-tilly-provins-photo-cmn-6-880x562.jpg"
+                 alt="Photo of a Shiba Inu">
             <div class="description-div">
-              Contents for {{formule.nom}} tab
+              voici une decription
+            </div>
+          </div>
+        </mat-tab>
+
+      <mat-tab *ngFor="let formule of service?.formules; index as index; " [label]="'Formule '+ (index+1)" >
+          <div class="example-large-box mat-elevation-z4" >
+            <img mat-card-image
+                 src="https://provins.net/wp-content/uploads/2020/07/chateau-de-la-motte-tilly-provins-photo-cmn-6-880x562.jpg"
+                 alt="Photo of a Shiba Inu">
+            <div class="description-div">
+              Nom: {{formule.nom}}
             </div>
           </div>
         </mat-tab>
@@ -53,6 +84,27 @@
       <!--<p>Vous avez Selectionner  {{index}}à la date  {{chosingDate}}</p>-->
     </div>
   </div>
-  <button class ="button"mat-raised-button color="primary"  [disabled]="!chosingDate  || selected.value==0 "  (click)="onFinalize()  ">Primary</button>
 
+
+  <button mat-raised-button
+          color="primary" [disabled]="!chosingDate  || (selected.value)==0"
+          (click)="onFinalize()">
+
+            <span class="span-tooltip"
+                  [matTooltip]="(!chosingDate  && (selected.value)==0)? 'Veuillez selectionner un date et une formule' :
+                                    (chosingDate  && (selected.value)==0)? 'Veuillez selectionner une formule':
+                                        (!chosingDate  && (selected.value)!==0)?'Veuillez selectionner une date':''"
+                  matTooltipClass="example-tooltip-red"
+                  [matTooltipDisabled]="!(!chosingDate  || (selected.value)==0)">
+    Reserver cette Formule !
+  </span>
+
+
+  </button>
+  <!--  <div matTooltip="You cannot delete that" [matTooltipDisabled]="!isButtonDisabled()">-->
+  <!--    <button mat-raised-button [disabled]="isButtonDisabled()">-->
+  <!--      <mat-icon>delete</mat-icon>-->
+  <!--    </button>-->
+  <!--  </div>-->
 </div>
+

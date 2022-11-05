@@ -28,6 +28,7 @@ export interface Formule {
   codePostal: any
   supDimanche: number
   supVeilleFerier: number
+  supSamedi: number
   images: Image[]
   service: any
 }

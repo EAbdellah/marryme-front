@@ -21,8 +21,15 @@
 .formules-div{
   margin-left: 5%;
   width: 100%;
+}
 
-
+::ng-deep {
+.mat-tooltip {
+  margin-top: 16px;
+  background: #b71c1c;
+}
+}
+.example-tooltip-red {
 }
 
 .description-div {
