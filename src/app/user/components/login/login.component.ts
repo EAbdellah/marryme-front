@@ -5,8 +5,8 @@ import {AuthenticationService} from "../../services/authentication.service";
 import {catchError, map, Observable, of, tap, throwError} from "rxjs";
 import {UserService} from "../../services/user-service";
 import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
-import {User} from "../../models/user.model";
 import {HeaderType} from "../../../enum/header-type.enum";
+import {User} from "../../models/user.model";
 
 @Component({
   selector: 'app-login',

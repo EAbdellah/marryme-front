@@ -33,4 +33,9 @@ export class UserService {
             (thisArg: any) => console.log('thisArg : ' + JSON.stringify(thisArg))
         ));
   }
+
+  public reservationRequest(reservationDate:string, formuleId:number, price:number,file:File ): Observable<HttpResponse<any>> {
+    const reservationRequestDTO = { reservationDate, formuleId,price,file };
+    return this.http.post<any>(`${this.host}/provider/reservationRequest`, reservationRequestDTO);
+  }
 }

@@ -8,6 +8,9 @@ import 'moment/locale/fr';
 import {MatDatepickerInputEvent} from "@angular/material/datepicker";
 import {FormControl} from '@angular/forms';
 import {MatTabChangeEvent, MatTabGroup} from "@angular/material/tabs";
+import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
+import {User} from "../../models/user.model";
+import {HeaderType} from "../../../enum/header-type.enum";
 
 export interface Holliday {
   d: string;
@@ -28,13 +31,12 @@ export class ProviderServiceComponent implements AfterViewInit, OnInit {
   events: string[] = [];
   chosingDate!: string;
   selected = new FormControl(0);
-  // index!:number|any;
   day!: number;
   val!: string;
   hollidayName!: string
   basicPrice!:number | null ;
   sup!:number ;
-  valeureuu : BehaviorSubject<string> = new BehaviorSubject("");
+  price!:number;
 
   hollidyas: Holliday[] = [
     {d: "01/01/2022", r: "Jour de l'an"},
@@ -52,7 +54,7 @@ export class ProviderServiceComponent implements AfterViewInit, OnInit {
 
   myFilter = (d: Date | null): boolean => {
     const day = (d || new Date());
-    return !this.fermetures.find(x => x == day);
+    return !this.fermetures.find(x => x.toLocaleDateString("fr-FR") == day.toLocaleDateString("fr-FR"));
   };
   //
   @ViewChild('tabGroup') tabGroup: { selectedIndex: any; } | undefined;
@@ -61,7 +63,8 @@ export class ProviderServiceComponent implements AfterViewInit, OnInit {
 
   constructor(private userService: UserService, private route: ActivatedRoute,
               private _adapter: DateAdapter<any>,
-              @Inject(MAT_DATE_LOCALE) private _locale: string) {
+              @Inject(MAT_DATE_LOCALE) private _locale: string,
+              ) {
   }
 
 
@@ -80,9 +83,6 @@ export class ProviderServiceComponent implements AfterViewInit, OnInit {
       )
     )
 
-    this.valeureuu.subscribe(x => {
-      this.val=x;
-    });
 
   }
 
@@ -103,7 +103,9 @@ export class ProviderServiceComponent implements AfterViewInit, OnInit {
     console.log('index => ', tabChangeEvent.index);
     console.log('index => ', tabChangeEvent.tab.textLabel);
     console.log(this.formules[tabChangeEvent.index-1]);
-    this.basicPrice = this.formules[tabChangeEvent.index-1].prix
+    this.basicPrice = this.formules[tabChangeEvent.index-1]?.prix
+    this.price=this.getPrice()
+
   }
 
 
@@ -114,8 +116,7 @@ export class ProviderServiceComponent implements AfterViewInit, OnInit {
     // @ts-ignore
     this.day = event.value?.getDay();
 
-    // console.log(this.sup)
-
+    this.price=this.getPrice()
   }
 
 
@@ -129,7 +130,6 @@ export class ProviderServiceComponent implements AfterViewInit, OnInit {
     if (typeof this.selected.value === "number") {
 
       let index:number = this.selected.value -1;
-
 
       return this.sup = this.dayType().includes('ferier')? this.formules[index]?.supFerrier :
         this.val.includes('Samedi')?this.formules[index]?.supSamedi :
@@ -160,6 +160,18 @@ export class ProviderServiceComponent implements AfterViewInit, OnInit {
     return this.hollidayName;
   }
 
+  getPrice():number{
+    console.log("Sup: "+this.sup);
+    console.log("basicPrice: "+this.basicPrice);
+    console.log("dayType: "+this.dayType());
+    console.log("daySup: "+this.daySup());
+
+    // @ts-ignore
+
+    this.price= this.sup+this.basicPrice;
+
+    return this.price;
+  }
 
   getValue(): string {
     switch (this.day) {
@@ -181,10 +193,40 @@ export class ProviderServiceComponent implements AfterViewInit, OnInit {
 
   onFinalize() {
 
+      let formatDate  =this.chosingDate.split("/").reverse().join("-");
+      let formulID =  this.formules[this.selected.value!-1]?.formuleID;
+      let file = null
 
-    console.log(console.log(
-      "Service id: " + this.idService + ", formule id: " + this.formules[this.selected.value!-1]?.formuleID + ", Chosen date: " + this.chosingDate
-    ))
+       console.log(formatDate);
+
+    // @ts-ignore
+    this.userService.reservationRequest(formatDate,formulID,this.price,file)
+      .subscribe({
+        // complete: () => {  },
+        error: (errorResponse: HttpErrorResponse) => {
+          console.log(errorResponse)
+
+        },
+        // next: (response: HttpResponse<any>) => {
+        //   const token = response.headers.get(HeaderType.JWT_TOKEN);
+        //   console.log("****response: "+JSON.stringify(response.headers.keys()))
+        //   console.log("****body: "+JSON.stringify(response.body))
+        //   console.log("****token: "+token)
+        //   // @ts-ignore
+        //   // this.authService.saveToken(token);
+        //   // // @ts-ignore
+        //   // this.authService.addUserToLocalCache(response.body);
+        //   this.router.navigateByUrl('/marryme');
+        // },
+      });
+
+    //
+    // console.log(console.log(
+    //   "Service id: " + this.idService +
+    //   ", formule id: " + this.formules[this.selected.value!-1]?.formuleID +
+    //   ", Chosen date: " + this.chosingDate.split("/").reverse().join("-") +
+    //   ", Price: " + this.price
+    // ))
   };
 
 
