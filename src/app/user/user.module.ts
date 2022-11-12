@@ -8,6 +8,8 @@ import { HomeComponent } from './components/home/home.component';
 import { AllServicesListComponent } from './components/all-services-list/all-services-list.component';
 import { ProviderServiceComponent } from './components/provider-service/provider-service.component';
 import {FormsModule} from "@angular/forms";
+import { ReservationListClientComponent } from './components/reservation-list-client/reservation-list-client.component';
+import { PaypalPaymentComponent } from './components/paypal-payment/paypal-payment.component';
 
 
 
@@ -18,6 +20,8 @@ import {FormsModule} from "@angular/forms";
     HomeComponent,
     AllServicesListComponent,
     ProviderServiceComponent,
+    ReservationListClientComponent,
+    PaypalPaymentComponent,
 
   ],
   imports: [

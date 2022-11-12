@@ -22,6 +22,8 @@ import {
 import 'moment/locale/fr';
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatGridListModule} from "@angular/material/grid-list";
+import {MatTableModule} from "@angular/material/table";
+import {MatChipsModule} from "@angular/material/chips";
 
 
 @NgModule({
@@ -46,6 +48,8 @@ import {MatGridListModule} from "@angular/material/grid-list";
     MatNativeDateModule,
     MatTabsModule,
     MatGridListModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatTableModule,
+    MatChipsModule
   ]
 }) export class MaterialModule{}

@@ -1,0 +1,95 @@
+  <div *ngFor="let reservation of dataSource " >
+    <mat-card>
+      <mat-card-title>Reservation {{reservation.ticket}}</mat-card-title>
+      <mat-card-subtitle>
+        Type de reservation: {{reservation.serviceType}} <br/>
+
+        <mat-card-content matLine>
+          <h6>
+            Vous avez choisi la formule {{reservation.formuleName}} du préstataire
+
+<!--            <a routerLink="marryme/{{reservation.serviceId}}">-->
+                        <a routerLink="../ {{reservation.serviceId}}">
+
+
+            {{reservation.serviceName}}</a>  à la date du {{reservation.reservationDate}}<br/>
+            Prix: {{reservation.price}}<br/>
+            Status de la reservation
+            <mat-chip-list>
+
+            <mat-chip class="assigned-chip"
+                      [ngClass]="{'assigned-chip-yellow': reservation.status === 'Waiting', 'assigned-chip-green': reservation.status === 'Accepted','assigned-chip-red': reservation.status === 'Not-accepted','assigned-chip-blue': reservation.status === 'Payed'}">
+              {{reservation.status}}
+            </mat-chip>
+            </mat-chip-list>
+            <br/>
+          </h6>
+          <!--            <span>  {{service.desciption}} </span>-->
+        </mat-card-content>
+
+        </mat-card-subtitle>
+      <mat-card-actions >
+        <button *ngIf = "reservation.status === 'Accepted'" mat-button (click)="sendInfo(reservation)">Payer</button>
+      </mat-card-actions>
+    </mat-card>
+    <br>
+
+  </div>
+
+
+
+<!--  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">-->
+<!--    &lt;!&ndash; Position Column &ndash;&gt;-->
+<!--    <ng-container matColumnDef="ticket">-->
+<!--      <th mat-header-cell *matHeaderCellDef>ticket</th>-->
+<!--      <td mat-cell *matCellDef="let reservation">{{reservation.tiket}}</td>-->
+<!--    </ng-container>-->
+
+<!--    &lt;!&ndash; Name Column &ndash;&gt;-->
+<!--    <ng-container matColumnDef="serviceType">-->
+<!--      <th mat-header-cell *matHeaderCellDef>serviceType</th>-->
+<!--      <td mat-cell *matCellDef="let reservation">{{reservation.serviceType}}</td>-->
+<!--    </ng-container>-->
+
+<!--    &lt;!&ndash; Weight Column &ndash;&gt;-->
+<!--    <ng-container matColumnDef="serviceId">-->
+<!--      <th mat-header-cell *matHeaderCellDef>serviceId</th>-->
+<!--      <td mat-cell *matCellDef="let reservation">{{reservation.serviceId}}</td>-->
+<!--    </ng-container>-->
+
+    <!-- Symbol Column -->
+<!--    <ng-container matColumnDef="serviceName">-->
+<!--      <th mat-header-cell *matHeaderCellDef>serviceName</th>-->
+<!--      <td mat-cell *matCellDef="let reservation">{{reservation.serviceName}}</td>-->
+<!--    </ng-container>-->
+<!--    <ng-container matColumnDef="formuleName">-->
+<!--      <th mat-header-cell *matHeaderCellDef>formuleName</th>-->
+<!--      <td mat-cell *matCellDef="let reservation">{{reservation.formuleName}}</td>-->
+<!--    </ng-container>-->
+
+<!--    <ng-container matColumnDef="reservationDate">-->
+<!--      <th mat-header-cell *matHeaderCellDef>reservationDate</th>-->
+<!--      <td mat-cell *matCellDef="let reservation">{{reservation.reservationDate}}</td>-->
+<!--    </ng-container>-->
+
+<!--    <ng-container matColumnDef="price">-->
+<!--      <th mat-header-cell *matHeaderCellDef>price</th>-->
+<!--      <td mat-cell *matCellDef="let reservation">{{reservation.price}}</td>-->
+<!--    </ng-container>-->
+
+<!--    <ng-container matColumnDef="status">-->
+<!--      <th mat-header-cell *matHeaderCellDef>status</th>-->
+<!--      <td mat-cell *matCellDef="let reservation">-->
+<!--        <mat-chip-->
+<!--          class="assigned-chip"-->
+<!--          [ngClass]="{'assigned-chip-yellow': reservation.status === 'Waiting', 'assigned-chip-green': reservation.status === 'Accepted','assigned-chip-red': reservation.status === 'Not-accepted','assigned-chip-blue': reservation.status === 'Payed'}"-->
+<!--        >  {{reservation.status}}</mat-chip>-->
+
+
+<!--      </td>-->
+<!--    </ng-container>-->
+
+
+<!--    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>-->
+<!--    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>-->
+<!--  </table>-->

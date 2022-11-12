@@ -1,16 +1,11 @@
-<!--<mat-toolbar color="primary">-->
-<!--  <a routerLink="marryme/">MarryMe</a>-->
-<!--  <ul>-->
-<!--    <li><a routerLink="marryme/register">Register</a></li>-->
-<!--    <li><a routerLink="/complex-form">Complex Form</a></li>-->
-<!--    <li><a routerLink="/reactive-state">Reactive State</a></li>-->
-<!--  </ul>-->
-<!--</mat-toolbar>-->
+
 
 <mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center">
   <span>
-    <button mat-button routerLink="/">{{title}}</button>
-    <button mat-button routerLink="/"><mat-icon>home</mat-icon></button>
+    <button mat-button routerLink="/">{{title}}
+      <mat-icon>home</mat-icon>
+    </button>
+<!--    <button mat-button routerLink="/"></button>-->
   </span>
   <span class="example-spacer"></span>
 
@@ -31,36 +26,16 @@
       lougout
     </button>
 
-    <button  mat-button *ngIf="isloged()">
-      <mat-icon>account_circle</mat-icon>
+    <button mat-button *ngIf="isloged()" [matMenuTriggerFor]="beforeMenu">
       Profil
+      <mat-icon>account_circle</mat-icon>
     </button>
-
+    <mat-menu #beforeMenu="matMenu" xPosition="before">
+      <button mat-menu-item >Modifier mes données</button>
+      <button mat-menu-item routerLink="marryme/reservations/">Mes reservations</button>
+    </mat-menu>
 
 
   </div>
-<!--  <button mat-button [matMenuTriggerFor]="menu" fxHide="false" fxHide.gt-sm>-->
-<!--    <mat-icon>menu</mat-icon>-->
-<!--  </button>-->
 </mat-toolbar>
 
-
-
-<!--<mat-menu x-position="before" #menu="matMenu">-->
-<!--  <button mat-menu-item routerLink="/">-->
-<!--    <mat-icon>home</mat-icon>-->
-<!--    Home-->
-<!--  </button>-->
-<!--  <button mat-menu-item routerLink="/game">-->
-<!--    <mat-icon>gamepad</mat-icon>-->
-<!--    Play-->
-<!--  </button>-->
-<!--  <button mat-menu-item routerLink="/login" *ngIf="!isAuthenticated">-->
-<!--    <mat-icon>power_settings_new</mat-icon>-->
-<!--    Login-->
-<!--  </button>-->
-<!--  <button mat-menu-item *ngIf="isAuthenticated" (click)="logout()">-->
-<!--    <mat-icon>exit_to_app</mat-icon>-->
-<!--    Logout-->
-<!--  </button>-->
-<!--</mat-menu>-->

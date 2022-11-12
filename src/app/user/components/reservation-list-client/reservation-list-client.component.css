@@ -1,0 +1,25 @@
+.demo-table {
+  width: 100%;
+}
+
+.demo-button-container {
+  padding-bottom: 10px;
+}
+
+.demo-button + .demo-button {
+  margin-left: 5px;
+}
+
+.assigned-chip-yellow{
+  background-color: #ffff33;
+}
+.assigned-chip-green{
+  background-color:  #33cc33;
+}
+.assigned-chip-red{
+  background-color: #cc2900;
+}
+.assigned-chip-blue{
+  background-color: #0039e6;
+}
+
