@@ -8,6 +8,7 @@ import {JwtHelperService} from "@auth0/angular-jwt";
 import {AllServicesDTO} from "../models/all-services-dto.model";
 import {SingleService} from "../models/single-service.model";
 import {SingleReservation} from "../models/single-reservation.model";
+import {ReservationPaidDTO} from "../models/reservation-paid-dto.model";
 
 @Injectable({
   providedIn: 'root'
@@ -48,6 +49,15 @@ export class UserService {
 
   public sendReservation(reservation: SingleReservation) {
     this.reservationSource.next(reservation);
+  }
+
+  // public reservationPayment(paid:ReservationPaidDTO ): Observable<ReservationPaidDTO> {
+  public reservationPayment(resTicket: string , paymentId: string,status:string, payerId: string): Observable<any> {
+    const paid={resTicket,paymentId,status,payerId}
+    console.log("paid: "+JSON.stringify(paid))
+    // return this.http.post<ReservationPaidDTO>(`${this.host}/user/login`, crendential, { observe: 'response' });
+    return this.http.post<ReservationPaidDTO>(`${this.host}/provider/confimationPaid`, paid);
+
   }
 
 }

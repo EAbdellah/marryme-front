@@ -18,21 +18,38 @@
 
 
   <mat-drawer class="side" mode="side" opened>
-    <h5>Selectionner un service:</h5>
-    <section class="example-section" [formGroup]="toppings">
+<!--    <h5>Selectionner un service:</h5>-->
+<!--    <section class="example-section" [formGroup]="toppings">-->
 
-      <p><mat-checkbox formControlName="pepperoni">Pepperoni</mat-checkbox></p>
-      <p><mat-checkbox formControlName="extracheese">Extra Cheese</mat-checkbox></p>
-      <p><mat-checkbox formControlName="mushroom">Mushroom</mat-checkbox></p>
-    </section>
+<!--          <p><mat-checkbox formControlName="SalleEntity" (change)="changeSelection()">Salle</mat-checkbox></p>-->
+<!--          <p><mat-checkbox formControlName="MusiqueEntity">Musique</mat-checkbox></p>-->
+<!--          <p><mat-checkbox formControlName="MediaEntity">Media</mat-checkbox></p>-->
+<!--          <p><mat-checkbox formControlName="TraiteurEntity">Traiteur</mat-checkbox></p>-->
+<!--          <p><mat-checkbox formControlName="ServiceTraiteurEntity">Service Traiteur</mat-checkbox></p>-->
+<!--          <p><mat-checkbox formControlName="MakeUpAndHairEntity">MakeUpAndAir</mat-checkbox></p>-->
+<!--    </section>-->
+
+
+    <div class="form-check" *ngFor="let product of servicesCheckBox; let index = index">
+      <label class="form-check-label text-break">
+<!--        <input class="form-check-input" type="checkbox" [ngModel]="selectedIndex === index"-->
+<!--               (change)="changeSelection($event, index,product.name)" />-->
+<!--        {{ product.label }}-->
+        <p><mat-checkbox [ngModel]="selectedIndex === index" (change)="changeSelection($event, index,product.name)">{{product.label}}</mat-checkbox></p>
+        <span class="form-check-sign">
+        <span class="check"></span>
+    </span>
+      </label>
+    </div>
 
   </mat-drawer>
+
 
   <!------------------MAIN---------------------->
 
 
   <mat-drawer-content class="main">
-    <div *ngFor="let service of servicesList$ | async | filter :value">
+    <div *ngFor="let service of serviceFiltered | filter :value">
 
       <mat-card class="home-card">
         <div id="div-flex-container">
