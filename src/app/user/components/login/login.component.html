@@ -1,7 +1,8 @@
+<div class="container">
+
 <mat-card [formGroup]="loginForm" class="main-form">
   <mat-card-title>Connexion</mat-card-title>
 
-  <mat-card class="form-card" >
     <div class="form-row">
 
       <mat-form-field appearance="fill">
@@ -16,11 +17,8 @@
         <mat-error>ce champ est requis</mat-error>
       </mat-form-field>
     </div>
-
-  </mat-card>
-
-
+<br/>
     <button mat-flat-button color="primary" (click)="authenticateTheUser()" [disabled]="!loginForm.valid">ENREGISTRER</button>
 
-
 </mat-card>
+</div>

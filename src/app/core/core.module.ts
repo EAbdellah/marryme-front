@@ -4,11 +4,12 @@ import {SharedModule} from "../shared/shared.module";
 import {RouterModule} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
 import {HeaderComponent} from "./components/header/header.component";
+import { FooterComponent } from './components/footer/footer.component';
 
 
 
 @NgModule({
-  declarations: [HeaderComponent
+  declarations: [HeaderComponent, FooterComponent
   ],
   imports: [
     CommonModule,
@@ -16,8 +17,9 @@ import {HeaderComponent} from "./components/header/header.component";
     RouterModule,
     HttpClientModule
   ],
-  exports:[
-    HeaderComponent
-  ]
+    exports: [
+        HeaderComponent,
+        FooterComponent
+    ]
 })
 export class CoreModule { }

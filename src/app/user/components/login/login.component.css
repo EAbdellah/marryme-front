@@ -1,35 +1,41 @@
-mat-form-field {
-  width: 45%;
-  margin-left: 10%;
+/*mat-form-field {*/
+/*  width: 45%;*/
+/*  margin-left: 10%;*/
+/*}*/
+
+/*.form-row {*/
+/*  display: flex;*/
+/*  justify-content: space-between;*/
+/*  align-items: center;*/
+/*}*/
+
+.container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
 }
 
-.form-row {
-  display: flex;
-  justify-content: space-between;
+
+/*mat-card-actions {*/
+/*  text-align: center;*/
+/*}*/
+
+.mat-card {
+  /*top:20%;*/
+
+  /*position:center;*/
+
   align-items: center;
 }
 
-.form-card {
-  margin: 40px 0;
-
-}
-
-
-mat-card-actions {
-  text-align: center;
-}
-
-.main-form {
-  /*position: relative;*/
-  top:20%;
-  width:50%;
-  position:fixed;
+.mat-form-field{
+  margin: 5px;
 }
 
 .mat-flat-button{
   float: right;
 }
 
-.error-text {
-  color: red;
-}
+/*.error-text {*/
+/*  color: red;*/
+/*}*/

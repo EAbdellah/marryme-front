@@ -50,6 +50,8 @@ import {MatChipsModule} from "@angular/material/chips";
     MatGridListModule,
     MatTooltipModule,
     MatTableModule,
-    MatChipsModule
+    MatChipsModule,
+    MatSidenavModule
+
   ]
 }) export class MaterialModule{}
