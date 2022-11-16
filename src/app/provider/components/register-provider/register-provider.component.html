@@ -1,0 +1,224 @@
+
+
+<mat-stepper linear #stepper>
+
+  <mat-step [stepControl]="personalInfoForm" [editable]="isEditable">
+<!--  <mat-step [editable]="isEditable">-->
+
+  <form [formGroup]="personalInfoForm">
+      <ng-template matStepLabel>Information CEO</ng-template>
+
+      <div class="form-row">
+
+        <mat-form-field appearance="fill">
+          <mat-label>Prénom</mat-label>
+          <input type="text" matInput formControlName="firstName">
+          <mat-error>ce champ est requis</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Nom</mat-label>
+          <input type="text" matInput formControlName="lastName">
+          <mat-error>ce champ est requis</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Numéro de téléphone</mat-label>
+          <input digitOnly  matInput formControlName="phone">
+          <mat-error>{{getFormControlErrorText(personalInfoForm.controls['phone'])}}</mat-error>
+        </mat-form-field>
+
+      </div>
+
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+
+  <mat-step [stepControl]="locationInfoForm" [editable]="isEditable">
+<!--  <mat-step [editable]="isEditable">-->
+
+  <form [formGroup]="locationInfoForm">
+      <ng-template matStepLabel>Adresse de l'entreprise</ng-template>
+
+      <div class="form-row">
+
+        <mat-form-field appearance="fill">
+          <mat-label>Pays</mat-label>
+          <input  type="text" matInput formControlName="country">
+          <mat-error>ce champ est requis</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Ville</mat-label>
+          <input  matInput formControlName="city">
+          <mat-error>ce champ est requis</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="fill">
+          <mat-label>Code postal</mat-label>
+          <input type="text"  matInput formControlName="postalCode">
+          <mat-error>ce champ est requis</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Rue</mat-label>
+          <input  type="text" matInput formControlName="street">
+          <mat-error>ce champ est requis</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="fill">
+          <mat-label>Numero</mat-label>
+          <input type="text" matInput formControlName="houseNumber">
+          <mat-error>ce champ est requis</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>boite n°</mat-label>
+          <input type="text"  matInput formControlName="box">
+        </mat-form-field>
+      </div>
+
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+
+
+
+
+  <mat-step [stepControl]="serviceInfoForm" [editable]="isEditable">
+<!--  <mat-step  [editable]="isEditable">-->
+
+  <form [formGroup]="serviceInfoForm">
+      <ng-template matStepLabel>Information société</ng-template>
+
+      <div class="form-row">
+
+        <mat-form-field appearance="fill">
+          <mat-label>Nom de l'entreprise</mat-label>
+          <input autocomplete="name" type="text" matInput formControlName="name">
+          <mat-error>ce champ est requis</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>N Entreprise</mat-label>
+          <input autocomplete="none" type="text" matInput formControlName="n_entreprise">
+          <mat-error>ce champ est requis</mat-error>
+        </mat-form-field>
+      </div>
+
+    <div class="form-row">
+        <mat-form-field appearance="fill">
+          <mat-label>N TVA</mat-label>
+          <input autocomplete="none" type="text" matInput formControlName="n_tva">
+          <mat-error>ce champ est requis</mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="fill">
+          <mat-label>Numéro de téléphone</mat-label>
+          <input digitOnly autocomplete="phone" matInput formControlName="entreprise_phone">
+          <mat-error>{{getFormControlErrorText(serviceInfoForm.controls['entreprise_phone'])}}</mat-error>
+        </mat-form-field>
+
+      </div>
+<!--      <div formGroupName="child">-->
+
+<!--      <div class="form-row">-->
+<!--        <mat-form-field appearance="fill">-->
+<!--          <mat-label>Adresse Mail</mat-label>-->
+<!--          <input type="text" autocomplete="email" matInput formControlName="email">-->
+<!--          <mat-error>{{getFormControlErrorText(emailCtrl)}}</mat-error>-->
+<!--        </mat-form-field>-->
+<!--        <mat-form-field appearance="fill">-->
+<!--          <mat-label>Confirmer l'adresse mail</mat-label>-->
+<!--          <input type="text" autocomplete="email" matInput formControlName="confirm">-->
+<!--          <mat-error>{{getFormControlErrorText(confirmEmailCtrl)}}</mat-error>-->
+<!--        </mat-form-field>-->
+<!--      </div>-->
+<!--      <small class="error-text" *ngIf="showEmailError$ | async">-->
+<!--        <mat-error>Les deux adresses ne correspondent pas</mat-error>-->
+<!--      </small>-->
+<!--    </div>-->
+
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+
+
+  <mat-step [stepControl]="credentialForm" [editable]="isEditable">
+    <form [formGroup]="credentialForm">
+      <ng-template matStepLabel>Information société</ng-template>
+
+      <div class="form-row" formGroupName="emailChild">
+
+
+            <mat-form-field appearance="fill">
+              <mat-label>Adresse Mail</mat-label>
+              <input type="text" autocomplete="email" matInput formControlName="email">
+              <mat-error>{{getFormControlErrorText(emailCtrl)}}</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Confirmer l'adresse mail</mat-label>
+              <input type="text" autocomplete="email" matInput formControlName="confirm">
+              <mat-error>{{getFormControlErrorText(confirmEmailCtrl)}}</mat-error>
+            </mat-form-field>
+
+      </div>
+      <small class="error-text" *ngIf="showEmailError$ | async">
+        <mat-error>Les deux adresses ne correspondent pas</mat-error>
+      </small>
+
+      <div class="form-row" formGroupName="passChild">
+
+        <mat-form-field appearance="fill">
+            <mat-label>Mot de passe</mat-label>
+            <input type="password" autocomplete="none" matInput formControlName="password">
+            <mat-error>{{getFormControlErrorText(passwordCtrl)}}</mat-error>
+
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Confirmer votre mot de passe</mat-label>
+            <input type="password" autocomplete="none" matInput formControlName="confirmPassword">
+            <mat-error>ce champ est requis</mat-error>
+
+          </mat-form-field>
+        </div>
+
+        <small class="error-text" *ngIf="showPasswordError$ | async"> <mat-error>Les mots de passe ne correspondent pas</mat-error></small>
+
+      <div>
+        <mat-card-subtitle>* Le mot de passe dois coontenir au moins 8 caracteres dont une minuscule, une majuscule et un nombre</mat-card-subtitle>
+      </div>
+
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+
+    </form>
+  </mat-step>
+
+
+
+
+  <mat-step>
+    <ng-template matStepLabel>Inforlation Service</ng-template>
+    <p>You are now done.</p>
+    <div>
+      <button mat-button (click)="onSubmit()">s'enregistrer</button>
+    </div>
+  </mat-step>
+</mat-stepper>

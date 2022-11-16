@@ -5,11 +5,12 @@ import {RouterModule} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
 import {HeaderComponent} from "./components/header/header.component";
 import { FooterComponent } from './components/footer/footer.component';
+import { RedirectRegistrationComponent } from './components/redirect-registration/redirect-registration.component';
 
 
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent
+  declarations: [HeaderComponent, FooterComponent, RedirectRegistrationComponent
   ],
   imports: [
     CommonModule,

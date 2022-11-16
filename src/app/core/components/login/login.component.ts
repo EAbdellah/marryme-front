@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
-import {AuthenticationService} from "../../services/authentication.service";
+import {AuthenticationService} from "../../../user/services/authentication.service";
 import {catchError, map, Observable, of, tap, throwError} from "rxjs";
-import {UserService} from "../../services/user-service";
+import {UserService} from "../../../user/services/user-service";
 import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
 import {HeaderType} from "../../../enum/header-type.enum";
-import {User} from "../../models/user.model";
+import {User} from "../../../user/models/user.model";
 
 @Component({
   selector: 'app-login',
@@ -82,11 +82,34 @@ export class LoginComponent implements OnInit {
           this.authService.saveToken(token);
           // @ts-ignore
           this.authService.addUserToLocalCache(response.body);
-          this.router.navigateByUrl('/user/management');
+          // @ts-ignore
+
+          if (response.body.role=="ROLE_USER"){
+          this.router.navigateByUrl('/marryme');
           this.showLoading = false;
+
+        }else { // @ts-ignore
+            if( response.body.role=="ROLE_PRESTATAIRE_ADMIN")
+                    {
+                          this.router.navigateByUrl('/provider');
+                          this.showLoading = false;
+
+                      }else { // @ts-ignore
+              if(response.body.role=="ROLE_ADMIN"){
+                            this.router.navigateByUrl('/admin');
+                            this.showLoading = false;
+                          }
+            }
+          }
+
+
         },
       });
 
 
+  }
+
+  click() {
+    this.router.navigate(['/redirectRegistration'],{skipLocationChange: true})
   }
 }

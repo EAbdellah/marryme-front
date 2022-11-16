@@ -1,0 +1,35 @@
+
+main-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+mat-form-field {
+  width: 45%;
+  margin-left: 10%;
+}
+
+.form-row {
+  width: 70%;
+  margin-top: 20px;
+  margin-left: 20px;
+  display: flex;
+  /*justify-content: space-between;*/
+  /*align-items: center;*/
+
+}
+
+.form-card {
+  margin: 30px 0;
+
+}
+
+
+mat-card-actions {
+  text-align: center;
+}
+
+.main-form {
+  padding-bottom: 30px;
+  position: relative;
+}

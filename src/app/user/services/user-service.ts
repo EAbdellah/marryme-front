@@ -21,16 +21,12 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   public getAllServices(): Observable<AllServicesDTO[]> {
-    return this.http.get<AllServicesDTO[]>(`${this.host}/provider/allServices`);
+    return this.http.get<AllServicesDTO[]>(`${this.host}/service/user/allServices`);
   }
-
-  // public getServiceByID(id: number): Observable<SingleService> {
-  //   return this.http.get<SingleService>(`${this.host}/provider/getService/${id}`);
-  // }
 
   public getServiceByID(id: number): Observable<SingleService> {
     return this.http
-      .get<SingleService>(`${this.host}/provider/getService/${id}`)
+      .get<SingleService>(`${this.host}/service/user/getService/${id}`)
       .pipe(
         first(),
         map(project => project as SingleService,
@@ -40,23 +36,21 @@ export class UserService {
 
   public reservationRequest(reservationDate:string, formuleId:number, price:number,file:File ): Observable<HttpResponse<any>> {
     const reservationRequestDTO = { reservationDate, formuleId,price,file };
-    return this.http.post<any>(`${this.host}/provider/reservationRequest`, reservationRequestDTO);
+    return this.http.post<any>(`${this.host}/service/user/reservationRequest`, reservationRequestDTO);
   }
 
   public getAllReservation(): Observable<SingleReservation[]> {
-    return this.http.get<SingleReservation[]>(`${this.host}/provider/getAllReservation`);
+    return this.http.get<SingleReservation[]>(`${this.host}/service/user/getAllReservation`);
   }
 
   public sendReservation(reservation: SingleReservation) {
     this.reservationSource.next(reservation);
   }
 
-  // public reservationPayment(paid:ReservationPaidDTO ): Observable<ReservationPaidDTO> {
   public reservationPayment(resTicket: string , paymentId: string,status:string, payerId: string): Observable<any> {
     const paid={resTicket,paymentId,status,payerId}
     console.log("paid: "+JSON.stringify(paid))
-    // return this.http.post<ReservationPaidDTO>(`${this.host}/user/login`, crendential, { observe: 'response' });
-    return this.http.post<ReservationPaidDTO>(`${this.host}/provider/confimationPaid`, paid);
+    return this.http.post<ReservationPaidDTO>(`${this.host}/service/user/confimationPaid`, paid);
 
   }
 

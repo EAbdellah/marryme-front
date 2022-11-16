@@ -1,12 +1,21 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { ProviderRoutingModule } from './provider-routing.module';
+import {SharedModule} from "../shared/shared.module";
+import {FormsModule} from "@angular/forms";
+import { DashbordProviderComponent } from './components/dashbord-provider/dashbord-provider.component';
+import { RegisterProviderComponent } from './components/register-provider/register-provider.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    DashbordProviderComponent,
+    RegisterProviderComponent
+  ],
   imports: [
-    CommonModule
+    ProviderRoutingModule,
+    SharedModule,
+    FormsModule,
   ]
 })
 export class ProviderModule { }

@@ -21,16 +21,19 @@ export class AuthInterceptor implements HttpInterceptor {
     if (httpRequest.url.includes(`${this.authService.host}/user/register`)) {
       return httpHandler.handle(httpRequest);
     }
-    if (httpRequest.url.includes(`${this.userService.host}/provider/allServices`)) {
+    if (httpRequest.url.includes(`${this.userService.host}/service/user/allServices`)) {
       return httpHandler.handle(httpRequest);
     }
-    if (httpRequest.url.includes(`${this.userService.host}/provider/getService/1`)) {
+    if (httpRequest.url.includes(`${this.userService.host}/service/user/getService/1`)) {
       return httpHandler.handle(httpRequest);
     }
-    if (httpRequest.url.includes(`${this.userService.host}/provider/getService/2`)) {
+    if (httpRequest.url.includes(`${this.userService.host}/service/user/getService/2`)) {
       return httpHandler.handle(httpRequest);
     }
-    if (httpRequest.url.includes(`${this.userService.host}/provider/getService/3`)) {
+    if (httpRequest.url.includes(`${this.userService.host}/service/user/getService/3`)) {
+      return httpHandler.handle(httpRequest);
+    }
+    if (httpRequest.url.includes(`${this.userService.host}/provider/register`)) {
       return httpHandler.handle(httpRequest);
     }
     this.authService.loadToken();

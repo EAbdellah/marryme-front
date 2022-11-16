@@ -148,7 +148,7 @@ export class RegisterFormComponent implements OnInit {
         }
       })
     ).subscribe();
-    this.router.navigateByUrl("/marryme/login")
+    this.router.navigateByUrl("/login")
   }
 
   private resetForm() {
