@@ -20,7 +20,8 @@ import { RedirectRegistrationComponent } from './components/redirect-registratio
   ],
     exports: [
         HeaderComponent,
-        FooterComponent
+        FooterComponent,
+        RedirectRegistrationComponent
     ]
 })
 export class CoreModule { }

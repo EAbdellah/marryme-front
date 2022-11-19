@@ -8,6 +8,7 @@ isActive: boolean;
 isNotLocked: boolean;
 authorities: [];
 // reservations: List<Reservation>;
+type:string
 profileImageUrl: String;
 lastLoginDate: Date;
 lastLoginDateDisplay: Date;

@@ -1,0 +1,32 @@
+<form [formGroup]="form">
+
+
+<div>
+  <mat-form-field class="example-full-width">
+    <mat-label>Nom de la Societe</mat-label>
+    <input matInput  formControlName="nom">
+  </mat-form-field>
+</div>
+
+
+<p>
+  <mat-checkbox class="example-margin"  formControlName="do_hair">
+    Vous Coiffez
+  </mat-checkbox>
+
+
+  <mat-checkbox class="example-margin"  formControlName="do_make_up">
+    Vous Maquillez
+  </mat-checkbox>
+</p>
+<p>
+  <mat-checkbox class="example-margin"  formControlName="do_man">
+    Vous faite  les femmes
+  </mat-checkbox>
+  <mat-checkbox class="example-margin"  formControlName="do_woman">
+    Vous faite  les hommes
+  </mat-checkbox>
+</p>
+  <button mat-flat-button color="primary" (click)="onSubmitForm(form!.value)">ENREGISTRER</button>
+
+</form>

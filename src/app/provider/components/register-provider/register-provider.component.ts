@@ -70,6 +70,7 @@ export class RegisterProviderComponent implements OnInit {
       n_entreprise:  this.serviceInfoForm.get('n_entreprise'),
       n_tva:  this.serviceInfoForm.get('n_tva'),
       entreprise_phone:  this.serviceInfoForm.get('entreprise_phone'),
+      serviceType:  this.serviceInfoForm.get('serviceType'),
       password:  this.credentialForm.controls['passChild'].get('password'),
       email_entreprise:  this.credentialForm.controls['emailChild'].get('email'),
     });
@@ -100,6 +101,8 @@ export class RegisterProviderComponent implements OnInit {
       n_tva: ['', Validators.required],
       entreprise_phone: ['',[Validators.required, Validators.minLength(10),
         Validators.maxLength(10)]],
+      serviceType: ['', Validators.required],
+
     });
 
     this.emailCtrl = this.formBuilder.control('',[Validators.email, Validators.required]);

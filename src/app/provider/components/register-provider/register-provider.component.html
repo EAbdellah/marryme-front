@@ -132,24 +132,18 @@
         </mat-form-field>
 
       </div>
-<!--      <div formGroupName="child">-->
 
-<!--      <div class="form-row">-->
-<!--        <mat-form-field appearance="fill">-->
-<!--          <mat-label>Adresse Mail</mat-label>-->
-<!--          <input type="text" autocomplete="email" matInput formControlName="email">-->
-<!--          <mat-error>{{getFormControlErrorText(emailCtrl)}}</mat-error>-->
-<!--        </mat-form-field>-->
-<!--        <mat-form-field appearance="fill">-->
-<!--          <mat-label>Confirmer l'adresse mail</mat-label>-->
-<!--          <input type="text" autocomplete="email" matInput formControlName="confirm">-->
-<!--          <mat-error>{{getFormControlErrorText(confirmEmailCtrl)}}</mat-error>-->
-<!--        </mat-form-field>-->
-<!--      </div>-->
-<!--      <small class="error-text" *ngIf="showEmailError$ | async">-->
-<!--        <mat-error>Les deux adresses ne correspondent pas</mat-error>-->
-<!--      </small>-->
-<!--    </div>-->
+    <mat-form-field appearance="fill">
+      <mat-label>Type de Prestation</mat-label>
+      <mat-select formControlName="serviceType" required>
+        <mat-option value="SalleEntity">Location de Salle</mat-option>
+        <mat-option value="TraiteurEntity">Traiteur</mat-option>
+        <mat-option value="MusiqueEntity">Musicien</mat-option>
+        <mat-option value="MakeUpAndHairEntity">Coiffure / Maquillage</mat-option>
+        <mat-option value="MediaEntity">Photo / Video</mat-option>
+        <mat-option value="ServiceTraiteurEntity">Serveur /Barman</mat-option>
+      </mat-select>
+    </mat-form-field>
 
       <div>
         <button mat-button matStepperNext>Next</button>

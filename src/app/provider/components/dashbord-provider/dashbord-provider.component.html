@@ -1,1 +1,125 @@
-<p>dashbord-provider works!</p>
+<mat-tab-group animationDuration="0ms" (selectedTabChange)="onSelect($event)">
+
+  <!--======================================================FORMULE/SERVICE TAB==============================================================-->
+  <mat-tab label="Formules">Formules
+
+    <div>
+      <button mat-raised-button class="example-add-tab-button" (click)="addTab(true)">Ajouter une formule</button>
+    </div>
+
+    <mat-tab-group animationDuration="0ms" [selectedIndex]="selected.value"
+                   (selectedIndexChange)="selected.setValue($event)">
+      <!--======================================================SERVICE TAB==============================================================-->
+
+      <mat-tab label="Service">
+
+        <ng-template #container></ng-template>
+
+
+
+
+
+
+
+
+      </mat-tab>
+
+      <!--======================================================FORMULE TAB==============================================================-->
+
+      <form [formGroup]="form">
+
+        <mat-tab *ngFor="let stu of crtl; let idx = index" fromControlName="name" [label]="'Formules n°' + (idx+1)"
+                 formArrayName="formules">
+
+          <div [formGroupName]="idx">
+            <table class="example-full-width" cellspacing="0">
+              <tr>
+                <td>
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Nom de la Formule</mat-label>
+                    <input matInput formControlName="nom">
+                  </mat-form-field>
+                </td>
+              </tr>
+            </table>
+
+
+            <mat-form-field class="example-full-width" style="width: 100%; ">
+              <mat-label>Description</mat-label>
+              <textarea matInput placeholder="Expliquer brievement les caracteristique de la formule" #postalCode
+                        maxlength="300" formControlName="description"></textarea>
+              <mat-hint align="end">{{postalCode.value.length}} / 300</mat-hint>
+            </mat-form-field>
+
+            <p>
+              <mat-form-field class="example-ripple-form-field" appearance="fill">
+                <mat-label>Prix de base</mat-label>
+                <input matInput type="number" formControlName="prix">
+              </mat-form-field>
+              Euro
+
+              <mat-slide-toggle class="example-margin" formControlName="is_unique_prix">Prix Unique ?</mat-slide-toggle>
+
+            </p>
+
+
+            <div *ngIf="!stu.get('is_unique_prix')!.value">
+              <p>
+                <mat-form-field class="example-ripple-form-field" appearance="fill" style=" margin-right: 3%">
+                  <mat-label>Supplement jour ferier</mat-label>
+                  <input placeholder="0" matInput type="number" formControlName="sup_ferrier">
+                </mat-form-field>
+
+
+                <mat-form-field class="example-ripple-form-field" appearance="fill" style=" margin-right: 3%">
+                  <mat-label>Supplement Veille de our ferier</mat-label>
+                  <input matInput type="number" formControlName="sup_veille_ferier">
+                </mat-form-field>
+
+                <mat-form-field class="example-ripple-form-field" appearance="fill" style=" margin-right: 3%">
+                  <mat-label>Supplement Vendredi</mat-label>
+                  <input matInput type="number" formControlName="supvendredi">
+                </mat-form-field>
+              </p>
+
+              <p>
+                <mat-form-field class="example-ripple-form-field" appearance="fill" style=" margin-right: 3%">
+                  <mat-label>Supplement Samedi</mat-label>
+                  <input matInput type="number" formControlName="sup_samedi">
+                </mat-form-field>
+
+                <mat-form-field class="example-ripple-form-field" appearance="fill" style=" margin-right: 3%">
+                  <mat-label>Supplement Dimanche</mat-label>
+                  <input matInput type="number" formControlName="sup_dimanche">
+                </mat-form-field>
+              </p>
+            </div>
+
+            <mat-card-actions>
+              <button mat-flat-button color="primary" (click)="onSubmit(stu.value)" [disabled]="stu.invalid">
+                ENREGISTRER
+              </button>
+            </mat-card-actions>
+          </div>
+
+          <button mat-raised-button
+                  class="example-delete-tab-button"
+                  [disabled]="crtl.length === 1"
+                  (click)="removeTab(idx)">
+            Delete Tab
+          </button>
+
+        </mat-tab>
+      </form>
+    </mat-tab-group>
+  </mat-tab>
+  <!--======================================================RESERVATION TAB==============================================================-->
+
+  <mat-tab label="Reservation">Reservation</mat-tab>
+
+
+  <!--======================================================AGENDA TAB==============================================================-->
+
+  <mat-tab label="Agenda">Agenda</mat-tab>
+
+</mat-tab-group>

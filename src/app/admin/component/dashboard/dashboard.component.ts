@@ -52,7 +52,7 @@ export class DashboardComponent implements OnInit {
   }
 
   sendDecision(decision:boolean,item:RequestRegistrationProviderDTO){
-    this.adminService.sendDecision(false,item.email, item.nom)
+    this.adminService.sendDecision(decision,item.email, item.nom)
       .subscribe( {
         // complete: () => {  },
         error: (errorResponse: HttpErrorResponse) => {

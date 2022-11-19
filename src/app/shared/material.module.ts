@@ -25,6 +25,9 @@ import {MatGridListModule} from "@angular/material/grid-list";
 import {MatTableModule} from "@angular/material/table";
 import {MatChipsModule} from "@angular/material/chips";
 import {MatStepperModule} from "@angular/material/stepper";
+import {MatSelectModule} from "@angular/material/select";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 
 @NgModule({
@@ -53,7 +56,10 @@ import {MatStepperModule} from "@angular/material/stepper";
     MatTableModule,
     MatChipsModule,
     MatSidenavModule,
-    MatStepperModule
+    MatStepperModule,
+    MatSelectModule,
+    MatSlideToggleModule,
+    MatSnackBarModule
 
   ]
 }) export class MaterialModule{}

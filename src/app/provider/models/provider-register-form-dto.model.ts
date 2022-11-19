@@ -12,6 +12,7 @@ export interface ProviderRegisterFormDTO {
   n_entreprise: string;
   n_tva: string;
   entreprise_phone: string;
-  password?: string;
+  serviceType:string;
+  password: string;
   email_entreprise: string;
 }

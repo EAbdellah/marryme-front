@@ -23,6 +23,6 @@ export class AdminServiceService {
   public sendDecision(accepted:boolean, email:string, nom:string): Observable<HttpResponse<any>> {
     const decision = { accepted, email,nom };
 
-    return this.http.post<any>(`${this.host}/user/login`,"", { observe: 'response' });
+    return this.http.post<any>(`${this.host}/admin/decision`,decision, { observe: 'response' });
   }
 }

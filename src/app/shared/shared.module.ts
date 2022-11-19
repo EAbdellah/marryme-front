@@ -1,24 +1,26 @@
-import { NgModule } from '@angular/core';
+import {Directive, NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {MaterialModule} from "./material.module";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {IgxModule} from "./igx.module";
 import {Ng2SearchPipeModule} from "ng2-search-filter";
 import {FilterServicePipe} from "./pipes/filter-service.pipe";
+import {DisabledControlDirective} from "./directives/disabled-control-directive.directive";
 
 
 
 @NgModule({
 
   declarations: [
-    FilterServicePipe
+    FilterServicePipe,
+    DisabledControlDirective
   ],
   imports: [
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
     IgxModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
   ],
   exports:[
     MaterialModule,
@@ -26,7 +28,9 @@ import {FilterServicePipe} from "./pipes/filter-service.pipe";
     CommonModule,
     IgxModule,
     Ng2SearchPipeModule,
-    FilterServicePipe
+    FilterServicePipe,
+    FormsModule,
+    DisabledControlDirective
   ]
 })
 export class SharedModule { }
