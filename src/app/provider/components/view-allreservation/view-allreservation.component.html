@@ -1,0 +1,188 @@
+<!--<mat-form-field>-->
+<!--  <mat-label>Filter</mat-label>-->
+<!--  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>-->
+<!--</mat-form-field>-->
+
+<!--<div class="mat-elevation-z4"   >-->
+<!--  <table mat-table [dataSource]="dataSource" matSort  multiTemplateDataRows>-->
+
+<!--    &lt;!&ndash; ID Column &ndash;&gt;-->
+<!--    <ng-container matColumnDef="reservation_date">-->
+<!--      <th mat-header-cell *matHeaderCellDef mat-sort-header> reservation_date </th>-->
+<!--      <td mat-cell *matCellDef="let row"> {{row.reservation_date}} </td>-->
+<!--    </ng-container>-->
+
+<!--    &lt;!&ndash; Progress Column &ndash;&gt;-->
+<!--    <ng-container matColumnDef="ticket">-->
+<!--      <th mat-header-cell *matHeaderCellDef mat-sort-header> ticket </th>-->
+<!--      <td mat-cell *matCellDef="let row"> {{row.ticket}}% </td>-->
+<!--    </ng-container>-->
+
+<!--    &lt;!&ndash; Name Column &ndash;&gt;-->
+<!--    <ng-container matColumnDef="formule_Name">-->
+<!--      <th mat-header-cell *matHeaderCellDef mat-sort-header> formule_Name </th>-->
+<!--      <td mat-cell *matCellDef="let row"> {{row.formule_Name}} </td>-->
+<!--    </ng-container>-->
+<!--    &lt;!&ndash; Name Column &ndash;&gt;-->
+<!--    <ng-container matColumnDef="price">-->
+<!--      <th mat-header-cell *matHeaderCellDef mat-sort-header> price </th>-->
+<!--      <td mat-cell *matCellDef="let row"> {{row.price}} </td>-->
+<!--    </ng-container>-->
+
+
+<!--     Name Column-->
+<!--    <ng-container matColumnDef="status">-->
+<!--      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>-->
+<!--      <td mat-cell *matCellDef="let row"> {{row.status}} </td>-->
+<!--    </ng-container>-->
+
+
+
+<!--    <ng-container cdkColumnDef="accepted" *ngIf="element.taxVersion.length > 0" matColumnDef="expandedDetail">-->
+<!--      <th mat-header-cell *matHeaderCellDef> Delete </th>-->
+<!--      <td mat-cell *matCellDef="let row"><i class="material-icons" (click)="delete(row)">delete</i>-->
+<!--    </ng-container>-->
+
+<!--    &lt;!&ndash;    </ng-container><ng-container matColumnDef="refused">&ndash;&gt;-->
+<!--&lt;!&ndash;    <mat-header-cell  *matHeaderCellDef > Actions </mat-header-cell>&ndash;&gt;-->
+<!--&lt;!&ndash;    <mat-cell *matCellDef="let row" >&ndash;&gt;-->
+<!--&lt;!&ndash;      <button mat-button >Edit</button>&ndash;&gt;-->
+<!--&lt;!&ndash;    </mat-cell>&ndash;&gt;-->
+<!--&lt;!&ndash;  </ng-container>&ndash;&gt;-->
+
+
+
+
+<!--&lt;!&ndash;    &ndash;&gt;-->
+<!--&lt;!&ndash;    <ng-container matColumnDef="accepted">&ndash;&gt;-->
+<!--&lt;!&ndash;      <th mat-header-cell *matHeaderCellDef>   </th>&ndash;&gt;-->
+<!--&lt;!&ndash;      <td mat-cell *matCellDef="let row">&ndash;&gt;-->
+<!--&lt;!&ndash;        <button mat-raised-button  color="warn" (click)="deleteTicket(row)">&ndash;&gt;-->
+<!--&lt;!&ndash;          <i class="fa fa-times mat-icon"></i> Refuser&ndash;&gt;-->
+<!--&lt;!&ndash;        </button>&ndash;&gt;-->
+<!--&lt;!&ndash;      </td>&ndash;&gt;-->
+<!--&lt;!&ndash;    </ng-container>&ndash;&gt;-->
+
+
+
+<!--&lt;!&ndash;    <ng-container matColumnDef="refused">&ndash;&gt;-->
+<!--&lt;!&ndash;      <th mat-header-cell *matHeaderCellDef>   </th>&ndash;&gt;-->
+<!--&lt;!&ndash;      <td mat-cell *matCellDef="let row">&ndash;&gt;-->
+<!--&lt;!&ndash;        <button mat-raised-button  color="primary"  (click)="acceptTicket(row)">&ndash;&gt;-->
+<!--&lt;!&ndash;          <i class="fa fa-times mat-icon"></i> Accepter&ndash;&gt;-->
+<!--&lt;!&ndash;        </button>&ndash;&gt;-->
+<!--&lt;!&ndash;      </td>&ndash;&gt;-->
+<!--&lt;!&ndash;    </ng-container>&ndash;&gt;-->
+
+
+
+
+
+<!--    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>-->
+<!--    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>-->
+
+<!--     Row shown when there is no matching data.-->
+<!--    <tr class="mat-row" *matNoDataRow>-->
+<!--      <td class="mat-cell" colspan="8">No data matching the filter "{{input.value}}"</td>-->
+<!--    </tr>-->
+
+
+
+
+<!--      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>-->
+<!--      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>-->
+
+
+
+<!--  </table>-->
+
+<!--  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>-->
+<!--</div>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table mat-table [dataSource]="allReservation" style="width: 100%"
+       matSort matSortActive="reservation_date" matSortDisableClear matSortDirection="desc">
+  <!-- Position  datasource
+ Column -->
+  <ng-container matColumnDef="reservation_date">
+    <th mat-header-cell *matHeaderCellDef>Date de la reservation</th>
+    <td mat-cell *matCellDef="let element" >{{element.reservation_date | date:'dd/MM/YYYY' }}</td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="ticket">
+    <th mat-header-cell *matHeaderCellDef>Ticket</th>
+    <td mat-cell *matCellDef="let element">{{element.ticket}}</td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="formule_Name">
+    <th mat-header-cell *matHeaderCellDef>Formule concernée</th>
+    <td mat-cell *matCellDef="let element">{{element.formule_Name}}</td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="price">
+    <th mat-header-cell *matHeaderCellDef>Prix</th>
+    <td mat-cell *matCellDef="let element">{{element.price}}</td>
+  </ng-container>
+  <ng-container matColumnDef="status">
+    <th mat-header-cell *matHeaderCellDef>Status de la demande</th>
+    <td mat-cell *matCellDef="let element" >
+    <mat-chip class="assigned-chip"
+              [ngClass]="{'assigned-chip-yellow': element.status === 'WAITING', 'assigned-chip-green': element.status === 'ACCEPTED','assigned-chip-red': element.status === 'NOT_ACCEPTED','assigned-chip-blue': element.status === 'PAYED'}">
+      {{element.status}}
+    </mat-chip>
+    </td>
+  </ng-container>
+
+
+
+  <ng-container matColumnDef="accepted" >
+    <th mat-header-cell *matHeaderCellDef>   </th>
+    <td mat-cell *matCellDef="let element;  let j = index;">
+      <button mat-raised-button  color="warn" focusable="false" (click)="deleteTicket(element)" *ngIf=" element.status=='WAITING'">
+        <i class="fa fa-times mat-icon"></i> Refuser
+      </button>
+    </td>
+  </ng-container>
+
+
+
+  <ng-container matColumnDef="refused">
+    <th mat-header-cell *matHeaderCellDef>   </th>
+    <td mat-cell *matCellDef="let element;  let j = index;">
+      <button mat-raised-button  color="primary" focusable="false" (click)="acceptTicket(element)" *ngIf=" element.status=='WAITING'">
+        <i class="fa fa-times mat-icon"></i> Accepter
+      </button>
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

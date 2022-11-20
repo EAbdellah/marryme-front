@@ -17,6 +17,6 @@
     </mat-select>
   </mat-form-field>
 </div>
-<button mat-flat-button color="primary" (click)="onSubmitForm(form!.value)">ENREGISTRER</button>
+<button mat-flat-button color="primary" [disabled]="!form.touched"  (click)="onSubmitForm(form!.value)">ENREGISTRER</button>
 
 </form>

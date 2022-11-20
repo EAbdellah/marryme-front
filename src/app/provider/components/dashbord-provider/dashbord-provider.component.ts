@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import {AuthenticationService} from "../../../user/services/authentication.service";
 import {ProviderService} from "../../services/provider.service";
-import {BehaviorSubject, Observable, tap} from "rxjs";
+import {BehaviorSubject, first, Observable, tap} from "rxjs";
 import {FermeturProviderDasBoardDTO} from "../../models/fermetur-provider-das-board-dto.model";
 import {MatTabChangeEvent} from "@angular/material/tabs";
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
@@ -34,19 +34,14 @@ export class DashbordProviderComponent implements OnInit, AfterViewInit {
   allFormules$!: Observable<FormulesProviderDashBoardDTO[]>;
   allFormules: FormulesProviderDashBoardDTO[] = []
   allReservation$!: Observable<ReservationProviderDashBoardDTO[]>;
+  allReservation!: ReservationProviderDashBoardDTO[];
+
   disableSelect = new FormControl(false);
   disabledName = false;
   selected = new FormControl(0);
   form!: FormGroup;
   formtemp!: FormGroup;
-
   typeOfService!:string;
-  // salleDTO : SalleProviderDasBoardDTO = this.getSalle()
-  // mediaDTO : MediaProviderDashBoardDTO = this.getMedia()
-  // musiqueDTO : MusiqueProviderDashBoardDTO = this.getMusique()
-  // makeUpHairDTO : MakeUPHairProviderDashBoardDTO = this.getMAkeUpHair()
-  // // traiteurDTO$ !: Observable<TraiteurProviderDashBoardDTO>;
-  // serviceTraitDTO : ServiceTraiteurProviderDashBoardDTO = this.getServiceTraiteur()
 
   @ViewChild('container', { static: true, read: ViewContainerRef }) entry: ViewContainerRef | undefined;
 
@@ -77,6 +72,15 @@ export class DashbordProviderComponent implements OnInit, AfterViewInit {
       }
   )
 
+    this.allReservation$.subscribe(
+      {
+        next: (data) =>
+        {console.log('RES: ' + JSON.stringify(data));
+          this.allReservation=data
+        }
+      }
+    )
+
     this.injectoProvider()
 
   }
@@ -92,7 +96,7 @@ export class DashbordProviderComponent implements OnInit, AfterViewInit {
   setFormArray(data: any[]): void {
     const fgs = data.map((item, index) =>
       this.fb.group({
-        formule_id: [{value: item.formule_id, disabled: false}, Validators.required],
+        formule_id: [{value: item.formule_id, disabled: false}],
         description: [{value: item.description, disabled: false}, Validators.required],
         nom: [{value: item.nom, disabled: false}, Validators.required],
         prix: [{value: item.prix, disabled: false}, Validators.required],
@@ -111,7 +115,11 @@ export class DashbordProviderComponent implements OnInit, AfterViewInit {
 
   onSubmit(formule: FormulesProviderDashBoardDTO): void {
     console.log("current Tabs selected Index: ", this.selected.value);
-    console.log("submit form: ", formule);
+    console.log("submit form: ", JSON.stringify(formule));
+    this.providerService.updateFormule(formule).pipe(first()).subscribe(
+      data=>{
+        console.log("formule as delete")
+      })
   }
 
   onSelect(tabChangeEvent: MatTabChangeEvent) {
@@ -130,7 +138,10 @@ export class DashbordProviderComponent implements OnInit, AfterViewInit {
 
       this.allReservation$.subscribe(
         {
-          next: (x) => console.log('RES: ' + JSON.stringify(x))
+          next: (data) =>
+          {console.log('RES: ' + JSON.stringify(data));
+          this.allReservation=data
+          }
         }
       )
 
@@ -168,7 +179,7 @@ export class DashbordProviderComponent implements OnInit, AfterViewInit {
   createFormules(): FormGroup {
 
     return this.fb.group({
-      formule_id: [{value: 0, disabled: false}, Validators.required],
+      // formule_id: [{value:  null, disabled: false}, Validators.required],
       description: [{value: "", disabled: false}, Validators.required],
       nom: [{value: "", disabled: false}, Validators.required],
       prix: [{value: 0, disabled: false}, Validators.required],
@@ -184,8 +195,14 @@ export class DashbordProviderComponent implements OnInit, AfterViewInit {
 
 
 
-  removeTab(index: number) {
+  removeTab(index: number,formule: FormulesProviderDashBoardDTO) {
     this.formules.removeAt(index);
+    if (formule.formule_id){
+      this.providerService.deleteFormule(formule).pipe(first()).subscribe(
+        data=>{
+          console.log("formule as delete")
+        })
+    }
   }
 
   injectoProvider()
@@ -218,72 +235,6 @@ export class DashbordProviderComponent implements OnInit, AfterViewInit {
       const componentRef = this.entry.createComponent(factory);
     }
   }
-
-  getSalle():SalleProviderDasBoardDTO{
-    return{
-      service_id:5,
-      nom:"Nom de la salle",
-      type:"MusiqueEntity",
-      capacite_total:250,
-      cuisine:true,
-      decoration:true,
-      hall_type:"BATEAU",
-      have_parking:true,
-      is_external:true,
-      materiel_musique:true,
-      piste_dance:true,
-      place_assise:50,
-      traiteur:true,
-      capacity:70,
-      voiturier:true,
-    }
-
-  }
-
-    getMedia():MediaProviderDashBoardDTO{
-      return {
-        service_id: 6,
-        nom: "MEDIA CORP",
-        type: "MakeUpAndHairEntity",
-        is_photo:true,
-        is_video:false,
-        do_album:true,
-        do_souvenir:false
-      }
- }
-  getMusique():MusiqueProviderDashBoardDTO{
-    return {
-      service_id: 6,
-      nom: "Musique CORP",
-      type: "MusiqueEntity",
-      musique_type: "DJ",
-
-    }
-  }
-
-  getMAkeUpHair():MakeUPHairProviderDashBoardDTO{
-    return {
-      service_id: 6,
-      nom: "COIFFEUR CORP",
-      type: "MakeUpAndHairEntity",
-      do_hair: false,
-      do_make_up: true,
-      do_man: true,
-      do_woman: false
-    }
-  }
-  getServiceTraiteur():ServiceTraiteurProviderDashBoardDTO{
-    return {
-      serviceId: 6,
-      nom: "MEDIA CORP",
-      type: "ServiceTraiteurEntity",
-      man_only: true,
-      woman_only: false
-    }
-  }
-
-
-
 
 
 }

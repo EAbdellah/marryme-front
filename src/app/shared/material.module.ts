@@ -28,6 +28,8 @@ import {MatStepperModule} from "@angular/material/stepper";
 import {MatSelectModule} from "@angular/material/select";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatSortModule} from "@angular/material/sort";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 
 @NgModule({
@@ -59,7 +61,9 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     MatStepperModule,
     MatSelectModule,
     MatSlideToggleModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatSortModule,
+    MatPaginatorModule,
 
   ]
 }) export class MaterialModule{}

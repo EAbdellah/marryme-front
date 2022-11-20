@@ -96,7 +96,7 @@
             </div>
 
             <mat-card-actions>
-              <button mat-flat-button color="primary" (click)="onSubmit(stu.value)" [disabled]="stu.invalid">
+              <button mat-flat-button color="primary" (click)="onSubmit(stu.value)" [disabled]="stu.invalid || !form.touched">
                 ENREGISTRER
               </button>
             </mat-card-actions>
@@ -105,7 +105,7 @@
           <button mat-raised-button
                   class="example-delete-tab-button"
                   [disabled]="crtl.length === 1"
-                  (click)="removeTab(idx)">
+                  (click)="removeTab(idx,stu.value)">
             Delete Tab
           </button>
 
@@ -115,9 +115,9 @@
   </mat-tab>
   <!--======================================================RESERVATION TAB==============================================================-->
 
-  <mat-tab label="Reservation">Reservation</mat-tab>
-
-
+  <mat-tab label="Reservation">Reservation
+    <app-view-allreservation [allReservation]="allReservation"></app-view-allreservation>
+  </mat-tab>
   <!--======================================================AGENDA TAB==============================================================-->
 
   <mat-tab label="Agenda">Agenda</mat-tab>

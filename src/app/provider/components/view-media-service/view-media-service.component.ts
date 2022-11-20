@@ -5,6 +5,7 @@ import {FormBuilder, FormGroup, Validators, ɵFormGroupValue, ɵTypedOrUntyped} 
 import {ProviderService} from "../../services/provider.service";
 import {first, Observable} from "rxjs";
 import {A} from "@angular/cdk/keycodes";
+import {MakeUPHairProviderDashBoardDTO} from "../../models/make-uphair-provider-dash-board-dto.model";
 
 @Component({
   selector: 'app-view-media-service',
@@ -18,28 +19,31 @@ export class ViewMediaServiceComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.formCreation()
+    this.initForm()
 
     this.providerService.getOwnMedia().pipe(first()).subscribe(
-      media=>{
-        this.initForm(media)
+      data=>{
+        this.setForm(data)
       }
     )
   }
 
 
-  formCreation() {
-    this.form = this.fb.group({
+  initForm() {
+    this.form =
+      this.fb.group({
       service_id: [{value: 0, disabled: false}],
       nom: [{value: "", disabled: true}],
-      is_video: [{value: false, disabled: false}, Validators.required],
+      is_video: [{value: false, disabled: false}, { validators: [Validators.required], updateOn: "blur" }],
       is_photo: [{value: false, disabled: false}, Validators.required],
       do_album: [{value: false, disabled: false}, Validators.required],
-      do_souvenir: [{value: false, disabled: false}, Validators.required]
-    });
+      do_souvenir: [{value: false, disabled: false},  { validators: [Validators.required], updateOn: "blur" }]
+      },{
+      updateOn: 'blur'
+    })
   }
 
-  initForm(data: MediaProviderDashBoardDTO ): void {
+  setForm(data: MediaProviderDashBoardDTO ): void {
       this.form.patchValue({'service_id': data.service_id})
       this.form.patchValue({'nom': data.nom})
       this.form.patchValue({'is_video': data.is_video})
@@ -48,7 +52,8 @@ export class ViewMediaServiceComponent implements OnInit {
       this.form.patchValue({'do_souvenir': data.do_souvenir})
     };
 
-  onSubmitForm(value: ɵTypedOrUntyped<any, ɵFormGroupValue<any>, any>) {
-    console.log(value)
-  }
+  onSubmitForm(form: MediaProviderDashBoardDTO) {
+    this.providerService.updateServiceMedia(form).pipe(first()).subscribe(
+      data=>{
+      })  }
 }

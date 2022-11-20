@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {RegisterFormValueModel} from "../../user/models/register-form-value.model";
 import {BehaviorSubject, catchError, delay, mapTo, Observable, of, tap} from "rxjs";
 import {environment} from "../../../environments/environment";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpResponse} from "@angular/common/http";
 import {ProviderRegisterFormDTO} from "../models/provider-register-form-dto.model";
 import {SingleReservation} from "../../user/models/single-reservation.model";
 import {ReservationProviderDashBoardDTO} from "../models/reservation-provider-dash-board-dto.model";
@@ -66,5 +66,94 @@ export class ProviderService {
   }
   public getOwnServiceTraiteur(): Observable<ServiceTraiteurProviderDashBoardDTO> {
     return this.http.get<ServiceTraiteurProviderDashBoardDTO>(`${this.host}/provider/getProviderOwnServiceTraiteurInfo`);
+  }
+
+  public deleteFormule(formValue: FormulesProviderDashBoardDTO): Observable<boolean> {
+    return this.http.post(`${this.host}/provider/deleteFormule`,formValue).pipe(
+      tap(x=>console.info(x)),
+      mapTo(true),
+      delay(1000),
+      catchError(() => of(false).pipe(
+        delay(1000)
+      ))
+    );
+  }
+
+  public updateFormule(formValue: FormulesProviderDashBoardDTO): Observable<boolean> {
+    return this.http.post(`${this.host}/provider/updateFormule`,formValue).pipe(
+      tap(x=>console.info(x)),
+      mapTo(true),
+      delay(1000),
+      catchError(() => of(false).pipe(
+        delay(1000)
+      ))
+    );
+  }
+
+  public updateServiceSalle(formValue:SalleProviderDasBoardDTO): Observable<boolean> {
+    return this.http.post(`${this.host}/provider/updateServiceSalle`,formValue).pipe(
+      tap(x=>console.info(x)),
+      mapTo(true),
+      delay(1000),
+      catchError(() => of(false).pipe(
+        delay(1000)
+      ))
+    );
+  }
+
+  public updateServiceMusique(formValue:MusiqueProviderDashBoardDTO): Observable<boolean> {
+    return this.http.post(`${this.host}/provider/updateServiceMusique`,formValue).pipe(
+      tap(x=>console.info(x)),
+      mapTo(true),
+      delay(1000),
+      catchError(() => of(false).pipe(
+        delay(1000)
+      ))
+    );  }
+
+  public updateServiceMedia(formValue:MediaProviderDashBoardDTO): Observable<boolean> {
+    return this.http.post(`${this.host}/provider/updateServiceMedia`,formValue).pipe(
+      tap(x=>console.info(x)),
+      mapTo(true),
+      delay(1000),
+      catchError(() => of(false).pipe(
+        delay(1000)
+      ))
+    );  }
+
+  public updateServiceMakeUpHair(formValue:MakeUPHairProviderDashBoardDTO): Observable<boolean> {
+    return this.http.post(`${this.host}/provider/updateServiceMakeUpHair`,formValue).pipe(
+      tap(x=>console.info(x)),
+      mapTo(true),
+      delay(1000),
+      catchError(() => of(false).pipe(
+        delay(1000)
+      ))
+    );  }
+
+  public updateServiceTraiteur(formValue:TraiteurProviderDashBoardDTO): Observable<boolean> {
+    return this.http.post(`${this.host}/provider/updateServiceTraiteur`,formValue).pipe(
+      tap(x=>console.info(x)),
+      mapTo(true),
+      delay(1000),
+      catchError(() => of(false).pipe(
+        delay(1000)
+      ))
+    );  }
+
+  public updateServiceTraiteurService(formValue:ServiceTraiteurProviderDashBoardDTO): Observable<boolean> {
+    return this.http.post(`${this.host}/provider/updateServiceTraiteurService`,formValue).pipe(
+      tap(x=>console.info(x)),
+      mapTo(true),
+      delay(1000),
+      catchError(() => of(false).pipe(
+        delay(1000)
+      ))
+    );  }
+
+  public sendDecision(accepted:boolean, ticket:string): Observable<HttpResponse<any>> {
+    const decision = { accepted, ticket };
+
+    return this.http.post<any>(`${this.host}/provider/decision`,decision, { observe: 'response' });
   }
 }

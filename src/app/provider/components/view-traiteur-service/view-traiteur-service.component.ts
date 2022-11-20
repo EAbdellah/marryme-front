@@ -2,8 +2,9 @@ import {Component, Input, OnInit} from '@angular/core';
 import {MediaProviderDashBoardDTO} from "../../models/media-provider-dash-board-dto.model";
 import {TraiteurProviderDashBoardDTO} from "../../models/traiteur-provider-dash-board-dto.model";
 import {FormBuilder, FormGroup, Validators, ɵFormGroupValue, ɵTypedOrUntyped} from "@angular/forms";
-import {Observable} from "rxjs";
+import {first, Observable} from "rxjs";
 import {ProviderService} from "../../services/provider.service";
+import {ServiceTraiteurProviderDashBoardDTO} from "../../models/service-traiteur-provider-dash-board-dto.model";
 
 @Component({
   selector: 'app-view-traiteur-service',
@@ -50,8 +51,8 @@ export class ViewTraiteurServiceComponent implements OnInit {
     });
   }
 
-  onSubmitForm(value: TraiteurProviderDashBoardDTO) {
-    console.log(value.service_id)
-    console.log(value)
-  }
+  onSubmitForm(form: TraiteurProviderDashBoardDTO) {
+    this.providerService.updateServiceTraiteur(form).pipe(first()).subscribe(
+      data=>{
+      })  }
 }

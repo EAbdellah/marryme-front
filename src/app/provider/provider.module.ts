@@ -11,6 +11,7 @@ import { ViewMakeUpHairServiceComponent } from './components/view-make-up-hair-s
 import { ViewTraiteurServiceComponent } from './components/view-traiteur-service/view-traiteur-service.component';
 import { ViewServiceTraiteurServiceComponent } from './components/view-service-traiteur-service/view-service-traiteur-service.component';
 import {CommonModule} from "@angular/common";
+import { ViewAllreservationComponent } from './components/view-allreservation/view-allreservation.component';
 
 
 
@@ -24,6 +25,7 @@ import {CommonModule} from "@angular/common";
     ViewMakeUpHairServiceComponent,
     ViewTraiteurServiceComponent,
     ViewServiceTraiteurServiceComponent,
+    ViewAllreservationComponent,
   ],
   imports: [
     ProviderRoutingModule,
