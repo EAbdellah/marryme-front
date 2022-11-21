@@ -13,6 +13,10 @@ import { AuthenticationGuard } from "./guard/authentication.guard";
 import { UserService } from "./user/services/user-service";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AuthInterceptor } from "./interceptor/auth.interceptor";
+import {AdminGuardGuard} from "./guard/adminGuard.guard";
+import {UserGuardGuard} from "./guard/userGuard.guard";
+import {ProviderService} from "./provider/services/provider.service";
+import {ProviderGuardGuard} from "./guard/providerGuard.guard";
 
 @NgModule({
   declarations: [
@@ -26,7 +30,7 @@ import { AuthInterceptor } from "./interceptor/auth.interceptor";
     SharedModule,
     NotificationModule
   ],
-  providers: [NotificationService, AuthenticationGuard, AuthenticationService, UserService,
+  providers: [NotificationService, AuthenticationGuard,AdminGuardGuard,UserGuardGuard,ProviderGuardGuard, AuthenticationService, UserService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })

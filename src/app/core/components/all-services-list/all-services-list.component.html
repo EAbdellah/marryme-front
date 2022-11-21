@@ -1,0 +1,122 @@
+<!------------------SEARCH---------------------->
+<mat-form-field class="search-bar" appearance="fill">
+  <mat-label>Rechercher un Service</mat-label>
+  <input matInput type="text" [(ngModel)]="value">
+  <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+    <mat-icon>close</mat-icon>
+  </button>
+  <mat-icon matPrefix disabled="true">search</mat-icon>
+</mat-form-field>
+
+
+<mat-drawer-container class="example-container">
+
+  <!------------------SIDE NAV---------------------->
+
+
+  <mat-drawer class="side" mode="side" opened>
+
+
+    <div class="form-check" *ngFor="let product of servicesCheckBox; let index = index">
+      <label class="form-check-label text-break">
+        <p>
+          <mat-checkbox [ngModel]="selectedIndex === index"
+                        (change)="changeSelection($event, index,product.name)">{{product.label}}</mat-checkbox>
+        </p>
+        <span class="form-check-sign">
+        <span class="check"></span>
+    </span>
+      </label>
+    </div>
+
+  </mat-drawer>
+
+
+  <!------------------MAIN---------------------->
+
+
+  <mat-drawer-content class="main"  *ngFor="let service of serviceFiltered | filter :value">
+<!--    <div >-->
+
+      <mat-card class="home-card">
+        <div id="div-flex-container">
+
+          <mat-card-title-group class="home-card-content">
+
+            <!-- ********************************************** IMAGE**********************************************-->
+            <div id="div-flex-image" *ngIf="service.type == 'SalleEntity'">
+              <img  class="image"  src="https://material.angular.io/assets/img/examples/shiba2.jpg">
+            </div>
+            
+
+            <p style="margin-left:2%"></p>
+
+            <!-- ********************************************** DESCRIPTION**********************************************-->
+
+            <div id="div-flex-center">
+              <mat-card-title matLine>  {{service.nom}} </mat-card-title>
+
+              <mat-card-content matLine>
+                <h6 id="description">
+                  {{service.presentation}}                </h6>
+                <!--            <span>  {{service.desciption}} </span>-->
+              </mat-card-content>
+              <div style="display:flex; flex-wrap:  wrap ;">
+                <mat-card-subtitle matLine></mat-card-subtitle>
+
+                <div class="chip" matLine *ngIf="service.doHair">Coiffeur</div>
+                <div class="chip" matLine *ngIf="service.doMakeUp">Maquilleur</div>
+                <div class="chip" matLine *ngIf="service.doMan&& service.doWoman">Homme/Femme</div>
+                <div class="chip" matLine *ngIf="service.doMan && service.doWoman! ">Uniquement homme</div>
+                <div class="chip" matLine *ngIf="service.doWoman && !service.doMan">Uniquement femme</div>
+                <div class="chip" matLine *ngIf="service.isPhoto">Photographe</div>
+                <div class="chip" matLine *ngIf="service.isVideo">Videaste</div>
+                <div class="chip" matLine *ngIf="service.doAlbum">Fait les Album photo</div>
+                <div class="chip" matLine *ngIf="service.doSouvenir">Fait les souenirs</div>
+                <div class="chip" matLine *ngIf="service.musiqueType"> type de musique: {{service.musiqueType}}</div>
+                <div class="chip" matLine *ngIf="service.hallTypeEntity">{{service.hallTypeEntity}}</div>
+                <div class="chip" matLine *ngIf="service.capaciteTotal">Capacite total: {{service.capaciteTotal}}</div>
+                <div class="chip" matLine *ngIf="service.placeAssise">place assise: {{service.placeAssise}}</div>
+                <div class="chip" matLine *ngIf="service.pisteDance">possede un piste de dance</div>
+                <div class="chip" matLine *ngIf="service.decoration">fournis la décoration</div>
+                <div class="chip" matLine *ngIf="service.materielMusique">fournis le materia de musqiue</div>
+                <div class="chip" matLine *ngIf="service.traiteur">fournis le service traiteur</div>
+                <div class="chip" matLine *ngIf="service.cuisine">possede une cuisine</div>
+                <div class="chip" matLine *ngIf="service.isExternal">possed une terasse</div>
+                <div class="chip" matLine *ngIf="service.haveParking">Possede un parking</div>
+                <div class="chip" matLine *ngIf="service.manOnly">assure un service pour homme</div>
+                <div class="chip" matLine *ngIf="service.womanOnly">assure un service pour femme</div>
+                <div class="chip" matLine *ngIf="service.womanOnly && service.manOnly">assure un service pour Homme et
+                  Femme
+                </div>
+                <div class="chip" matLine *ngIf="service.doMeat">Plat a abse de viande</div>
+                <div class="chip" matLine *ngIf="service.doFish">Plat a base de poisson</div>
+                <div class="chip" matLine *ngIf="service.doVegan">plat végétalien</div>
+                <div class="chip" matLine *ngIf="service.doVegetarian">plat vegetarien</div>
+
+
+              </div>
+
+            </div>
+            <!-- ********************************************** BOUT**********************************************-->
+            <mat-card-actions class="div-flex-button" >
+              <button color="accent" mat-raised-button  (click)="onViewService(service.serviceID)">
+                Verifier les
+                dates
+              </button>
+            </mat-card-actions>
+
+          </mat-card-title-group>
+
+
+        </div>
+        <div>
+
+        </div>
+      </mat-card>
+
+      <br>
+<!--    </div>-->
+  </mat-drawer-content>
+
+</mat-drawer-container>

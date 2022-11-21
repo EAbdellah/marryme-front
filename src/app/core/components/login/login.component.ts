@@ -85,7 +85,7 @@ export class LoginComponent implements OnInit {
           // @ts-ignore
 
           if (response.body.role=="ROLE_USER"){
-          this.router.navigateByUrl('/marryme');
+          this.router.navigateByUrl('/allService');
           this.showLoading = false;
 
         }else { // @ts-ignore

@@ -38,6 +38,7 @@ export class ViewServiceTraiteurServiceComponent implements OnInit {
       nom: [{value: "", disabled: true}],
       man_only: [{value: false, disabled: false}, Validators.required],
       woman_only: [{value: false, disabled: false}, Validators.required],
+      presentation:[{value: false, disabled: false}, Validators.required]
 
     });
   }
@@ -49,6 +50,7 @@ export class ViewServiceTraiteurServiceComponent implements OnInit {
     this.form.patchValue({'nom': data.nom})
     this.form.patchValue({'man_only': data.man_only})
     this.form.patchValue({'woman_only': data.woman_only})
+    this.form.patchValue({'presentation': data.presentation})
 
   };
 

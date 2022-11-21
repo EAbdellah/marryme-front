@@ -8,6 +8,13 @@
     </mat-form-field>
   </div>
 
+  <mat-form-field class="example-full-width" style="width: 100%; ">
+    <mat-label>Presentation</mat-label>
+    <textarea matInput placeholder="Présentez brievement votre société" #postalCode
+              maxlength="300" formControlName="presentation"></textarea>
+    <mat-hint align="end">{{postalCode.value.length}} / 300</mat-hint>
+  </mat-form-field>
+
   <div>
     <mat-form-field class="example-ripple-form-field" appearance="fill" style=" margin-right: 3%">
       <mat-label>Capacite Total</mat-label>

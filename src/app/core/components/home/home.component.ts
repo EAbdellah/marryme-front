@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthenticationService} from "../../services/authentication.service";
+import {AuthenticationService} from "../../../user/services/authentication.service";
 
 @Component({
   selector: 'app-home',

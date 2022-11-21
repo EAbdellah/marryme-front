@@ -3,7 +3,7 @@ import {AbstractControl, Form, FormBuilder, FormControl, FormGroup, Validators} 
 import {confirmEqualValidator} from "../../../user/validators/confirm-equal.validator";
 import {AtLeast} from "../../../user/validators/at-least.valisator";
 import {map, Observable, tap} from "rxjs";
-import {ProviderService} from "../../services/provider.service";
+import {ProviderService} from "../../../provider/services/provider.service";
 
 @Component({
   selector: 'app-register-provider',

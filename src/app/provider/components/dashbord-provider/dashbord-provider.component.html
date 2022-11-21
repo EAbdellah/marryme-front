@@ -120,6 +120,11 @@
   </mat-tab>
   <!--======================================================AGENDA TAB==============================================================-->
 
-  <mat-tab label="Agenda">Agenda</mat-tab>
+  <mat-tab label="Agenda">
+    <app-view-all-fermeture [allFermeture$]="allFermeture$"></app-view-all-fermeture>
+
+  </mat-tab>
+
+
 
 </mat-tab-group>

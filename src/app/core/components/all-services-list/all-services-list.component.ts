@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {map, Observable, Subscription, tap} from "rxjs";
-import {AllServicesDTO} from "../../models/all-services-dto.model";
-import {UserService} from "../../services/user-service";
+import {AllServicesDTO} from "../../../user/models/all-services-dto.model";
+import {UserService} from "../../../user/services/user-service";
 import {IgxFilterOptions} from "igniteui-angular";
 import {Router} from "@angular/router";
 import {FormBuilder} from "@angular/forms";
 import {MatCheckboxChange} from "@angular/material/checkbox";
+import {AuthenticationService} from "../../../user/services/authentication.service";
 
 @Component({
   selector: 'app-all-services-list',
@@ -46,7 +47,7 @@ export class AllServicesListComponent implements OnInit {
   serviceFiltered: AllServicesDTO[] = [];
 
 
-  constructor(private userService: UserService, private router: Router, private _formBuilder: FormBuilder) {
+  constructor(private userService: UserService, private router: Router, private _formBuilder: FormBuilder,private auth:AuthenticationService) {
   }
 
   ngOnInit(): void {
@@ -60,7 +61,7 @@ export class AllServicesListComponent implements OnInit {
   }
 
   onViewService(id: string) {
-    this.router.navigateByUrl(`marryme/${id}`);
+    this.router.navigateByUrl(`user/${id}`);
   }
 
 

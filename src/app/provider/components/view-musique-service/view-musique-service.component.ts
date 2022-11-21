@@ -31,6 +31,7 @@ export class ViewMusiqueServiceComponent implements OnInit {
       service_id: [{value: 0, disabled: false}],
       nom: [{value: "", disabled: true}],
       musique_type: [{value: "", disabled: false}, Validators.required],
+      presentation:[{value: false, disabled: false}, Validators.required]
 
     });
   }
@@ -39,6 +40,7 @@ export class ViewMusiqueServiceComponent implements OnInit {
     this.form.patchValue({'service_id': data.service_id})
     this.form.patchValue({'nom': data.nom})
     this.form.patchValue({'musique_type': data.musique_type})
+    this.form.patchValue({'presentation': data.presentation})
 
   };
 

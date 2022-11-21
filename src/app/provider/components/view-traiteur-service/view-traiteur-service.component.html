@@ -7,8 +7,17 @@
   </mat-form-field>
 </div>
 
+  <mat-form-field class="example-full-width" style="width: 100%; ">
+    <mat-label>Presentation</mat-label>
+    <textarea matInput placeholder="Présentez brievement votre société" #postalCode
+              maxlength="300" formControlName="presentation"></textarea>
+    <mat-hint align="end">{{postalCode.value.length}} / 300</mat-hint>
+  </mat-form-field>
 
-<p>
+
+
+
+  <p>
   <mat-checkbox class="example-margin" formControlName="do_vegan">
     Vous faites des plats végan
   </mat-checkbox>

@@ -156,4 +156,8 @@ export class ProviderService {
 
     return this.http.post<any>(`${this.host}/provider/decision`,decision, { observe: 'response' });
   }
+
+  addDateToFermeture(chosingDate: string) {
+    return this.http.post<any>(`${this.host}/provider/addFermeture`,chosingDate, { observe: 'response' });
+  }
 }

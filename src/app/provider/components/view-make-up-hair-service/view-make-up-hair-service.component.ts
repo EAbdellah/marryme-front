@@ -32,7 +32,9 @@ export class ViewMakeUpHairServiceComponent implements OnInit {
       do_hair: [{value: false, disabled: false}, Validators.required],
       do_make_up: [{value: false, disabled: false}, Validators.required],
       do_man: [{value: false, disabled: false}, Validators.required],
-      do_woman: [{value: false, disabled: false}, Validators.required]
+      do_woman: [{value: false, disabled: false}, Validators.required],
+      presentation:[{value: false, disabled: false}, Validators.required]
+
     });
   }
 
@@ -42,7 +44,8 @@ export class ViewMakeUpHairServiceComponent implements OnInit {
     this.form.patchValue({'do_hair': data.do_hair})
     this.form.patchValue({'do_make_up': data.do_make_up})
     this.form.patchValue({'do_man': data.do_man})
-    this.form.patchValue({'do_woman': data.do_woman})
+    this.form.patchValue({'do_woman': data.do_woman}), this.form.patchValue({'presentation': data.presentation})
+
   };
 
 

@@ -1,5 +1,5 @@
 .footer {
-  position: static;
+  position: sticky;
   bottom: 0;
   width: 100%;
   height: 10%;
@@ -7,8 +7,7 @@
   color: rgb(9, 2, 24);
   text-align: center;
   margin: 0px;
-
-  z-index: 9;
+  /*z-index: 9;*/
 }
 /*.content {*/
 /*  position: absolute;*/

@@ -112,4 +112,50 @@ export class AuthenticationService {
     }
   }
 
+  // @ts-ignore
+  public isUser(): boolean{
+    this.loadToken();
+    if (this.token != null && this.token !== ''){
+      if (this.jwtHelper.decodeToken(this.token).sub != null || '') {
+        if (!this.jwtHelper.isTokenExpired(this.token)) {
+          let decodedJWT = JSON.parse(window.atob(this.token.split('.')[1]));
+          if (decodedJWT.whichCustomer==='ROLE_USER'){
+          return true;
+        }
+        }
+      }
+    }
+  }
+
+  // @ts-ignore
+  public isProvider(): boolean{
+    this.loadToken();
+    if (this.token != null && this.token !== ''){
+      if (this.jwtHelper.decodeToken(this.token).sub != null || '') {
+        if (!this.jwtHelper.isTokenExpired(this.token)) {
+          let decodedJWT = JSON.parse(window.atob(this.token.split('.')[1]));
+          if (decodedJWT.whichCustomer==='ROLE_PRESTATAIRE_ADMIN'){
+            return true;
+          }
+        }
+      }
+    }
+  }
+
+
+  // @ts-ignore
+  public isAdmin(): boolean{
+    this.loadToken();
+    if (this.token != null && this.token !== ''){
+      if (this.jwtHelper.decodeToken(this.token).sub != null || '') {
+        if (!this.jwtHelper.isTokenExpired(this.token)) {
+          let decodedJWT = JSON.parse(window.atob(this.token.split('.')[1]));
+          if (decodedJWT.whichCustomer==='ROLE_ADMIN'){
+            return true;
+          }
+        }
+      }
+    }
+  }
+
 }

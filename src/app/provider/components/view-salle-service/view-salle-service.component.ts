@@ -45,6 +45,7 @@ export class ViewSalleServiceComponent implements OnInit {
         capacity: [{value: false, disabled: false}, Validators.required],
         traiteur: [{value: false, disabled: false}, Validators.required],
         voiturier: [{value: false, disabled: false}, Validators.required],
+        presentation:[{value: false, disabled: false}, Validators.required]
       });
     }
 
@@ -65,7 +66,9 @@ export class ViewSalleServiceComponent implements OnInit {
       this.form.patchValue({'capacity': data.capacity})
       this.form.patchValue({'traiteur': data.traiteur})
       this.form.patchValue({'voiturier': data.voiturier})
-    };
+      this.form.patchValue({'presentation': data.presentation})
+
+  };
 
 
     onSubmitForm(form: SalleProviderDasBoardDTO) {

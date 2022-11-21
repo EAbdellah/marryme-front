@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {confirmEqualValidator} from "../../validators/confirm-equal.validator";
+import {confirmEqualValidator} from "../../../user/validators/confirm-equal.validator";
 import {map, Observable, startWith, tap} from "rxjs";
-import {AtLeast} from "../../validators/at-least.valisator";
-import {UserService} from "../../services/user-service";
+import {AtLeast} from "../../../user/validators/at-least.valisator";
+import {UserService} from "../../../user/services/user-service";
 import {Router} from "@angular/router";
-import {AuthenticationService} from "../../services/authentication.service";
+import {AuthenticationService} from "../../../user/services/authentication.service";
 
 @Component({
   selector: 'app-register-form',

@@ -16,7 +16,7 @@ import { RedirectRegistrationComponent } from './components/redirect-registratio
     CommonModule,
     SharedModule,
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
   ],
     exports: [
         HeaderComponent,

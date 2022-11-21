@@ -6,4 +6,6 @@ export interface TraiteurProviderDashBoardDTO {
   do_fish?: boolean;
   do_meat?: boolean;
   do_vegetarian?: boolean;
+  presentation?:string;
+
 }

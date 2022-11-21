@@ -6,4 +6,6 @@ export interface MakeUPHairProviderDashBoardDTO {
   do_make_up?: boolean;
   do_man?: boolean;
   do_woman?: boolean;
+  presentation?:string;
+
 }

@@ -30,6 +30,9 @@ import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatSortModule} from "@angular/material/sort";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
+import {FormsModule} from "@angular/forms";
+import {BrowserModule} from "@angular/platform-browser";
 
 
 @NgModule({
@@ -64,6 +67,5 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     MatSnackBarModule,
     MatSortModule,
     MatPaginatorModule,
-
   ]
 }) export class MaterialModule{}

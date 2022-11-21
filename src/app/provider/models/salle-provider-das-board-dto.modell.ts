@@ -14,4 +14,6 @@ export interface SalleProviderDasBoardDTO {
   traiteur?: boolean;
   capacity?: number;
   voiturier?: boolean;
+  presentation?:string;
+
 }

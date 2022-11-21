@@ -5,22 +5,24 @@ import {AuthenticationService} from "../user/services/authentication.service";
 import {NotificationService} from "../user/services/notification.service";
 
 @Injectable({providedIn: 'root'})
-export class AuthenticationGuard implements CanActivate {
+export class UserGuardGuard implements CanActivate {
 
   constructor(private authenticationService: AuthenticationService, private router: Router,
               private notificationService: NotificationService) {}
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    return this.isUserLoggedIn();
+    return this.isAuthorized();
   }
 
-  private isUserLoggedIn(): boolean {
-    if (this.authenticationService.isUserLoggedIn()) {
+  private isAuthorized(): boolean {
+    if (this.authenticationService.isUser()) {
       return true;
     }
+    if (this.authenticationService.isProvider()){
+      this.router.navigate(['/provider']);
 
-    this.router.navigate(['/login']);
-    window.alert(`Vous  devez vous authentifier pour acceder à cette page`)
+    }
+    window.alert(`Vous n'avez pas l'authorisation d'accer à cette page`)
     // this.notificationService.notify(NotificationType.ERROR, `You need to log in to access this page`);
     return false;
   }

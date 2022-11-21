@@ -2,7 +2,7 @@
 
 <mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center">
   <span>
-    <button mat-button routerLink="/">{{title}}
+    <button mat-button routerLink="/allService">{{title}}
       <mat-icon>home</mat-icon>
     </button>
 <!--    <button mat-button routerLink="/"></button>-->
@@ -16,7 +16,7 @@
       Login
     </button>
 
-    <button mat-button routerLink="marryme/register" *ngIf="!isloged()" >
+    <button mat-button routerLink="user/register" *ngIf="!isloged()" >
       <mat-icon>power_settings_new</mat-icon>
       register
     </button>
@@ -26,15 +26,22 @@
       lougout
     </button>
 
-    <button mat-button *ngIf="isloged()" [matMenuTriggerFor]="beforeMenu">
+
+    <button mat-button *ngIf="isUser()" [matMenuTriggerFor]="beforeMenu">
       Profil
       <mat-icon>account_circle</mat-icon>
     </button>
+
+
     <mat-menu #beforeMenu="matMenu" xPosition="before">
       <button mat-menu-item >Modifier mes données</button>
-      <button mat-menu-item routerLink="marryme/reservations/">Mes reservations</button>
+      <button mat-menu-item routerLink="user/reservations/">Mes reservations</button>
     </mat-menu>
 
+    <button mat-button *ngIf="isProvider()" routerLink="/provider">
+      DashBoard
+      <mat-icon>account_circle</mat-icon>
+    </button>
 
   </div>
 </mat-toolbar>

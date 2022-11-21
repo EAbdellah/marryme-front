@@ -4,4 +4,6 @@ export interface ServiceTraiteurProviderDashBoardDTO {
   type?: string;
   man_only?: boolean;
   woman_only?: boolean;
+  presentation?:string;
+
 }

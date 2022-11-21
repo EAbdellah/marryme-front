@@ -26,9 +26,20 @@
 }
 
 
-#div-flex-left{
- width: 100%;
+.chip {
+  display: inline-block;
+  padding: 0 25px;
+  height: 35px;
+  font-size: 16px;
+  line-height: 35px;
+  border-radius: 25px;
+  background-color: lightgoldenrodyellow;
+  margin-right:1%;
+  margin-bottom: 1%;
+
 }
+
+
 
 
 
@@ -42,4 +53,35 @@
 }
 .example-container{
   min-height: 600px;
+}
+//.home-card{
+//  display:flex
+//}
+//
+
+#div-flex-container{
+  width: 100%;
+  justify-content:space-between;
+  align-items: flex-end;
+}
+#div-flex-image{
+  width: 35%;
+  height: auto;
+
+}
+#div-flex-center{
+  //width: 1000px;
+  width: 90%;
+
+}
+
+.image{
+
+}
+
+#div-flex-button{
+  //position: absolute;
+  //right:    0;
+  //bottom:   0;
+  align-self: flex-end
 }

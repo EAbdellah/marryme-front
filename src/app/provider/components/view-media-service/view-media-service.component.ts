@@ -37,7 +37,9 @@ export class ViewMediaServiceComponent implements OnInit {
       is_video: [{value: false, disabled: false}, { validators: [Validators.required], updateOn: "blur" }],
       is_photo: [{value: false, disabled: false}, Validators.required],
       do_album: [{value: false, disabled: false}, Validators.required],
-      do_souvenir: [{value: false, disabled: false},  { validators: [Validators.required], updateOn: "blur" }]
+      do_souvenir: [{value: false, disabled: false},  { validators: [Validators.required], updateOn: "blur" }],
+        presentation:[{value: false, disabled: false}, Validators.required]
+
       },{
       updateOn: 'blur'
     })
@@ -50,7 +52,8 @@ export class ViewMediaServiceComponent implements OnInit {
       this.form.patchValue({'is_photo': data.is_photo})
       this.form.patchValue({'do_album': data.do_album})
       this.form.patchValue({'do_souvenir': data.do_souvenir})
-    };
+    this.form.patchValue({'presentation': data.presentation})
+  };
 
   onSubmitForm(form: MediaProviderDashBoardDTO) {
     this.providerService.updateServiceMedia(form).pipe(first()).subscribe(

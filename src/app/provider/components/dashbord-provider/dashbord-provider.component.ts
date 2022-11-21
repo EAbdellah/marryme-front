@@ -151,6 +151,7 @@ export class DashbordProviderComponent implements OnInit, AfterViewInit {
         .subscribe(
           {
             next: (x) => console.log('FERM: ' + JSON.stringify(x))
+
           }
         )
     }

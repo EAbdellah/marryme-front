@@ -3,7 +3,7 @@ import { ProviderRoutingModule } from './provider-routing.module';
 import {SharedModule} from "../shared/shared.module";
 import {FormsModule} from "@angular/forms";
 import { DashbordProviderComponent } from './components/dashbord-provider/dashbord-provider.component';
-import { RegisterProviderComponent } from './components/register-provider/register-provider.component';
+import { RegisterProviderComponent } from '../core/components/register-provider/register-provider.component';
 import { ViewSalleServiceComponent } from './components/view-salle-service/view-salle-service.component';
 import { ViewMusiqueServiceComponent } from './components/view-musique-service/view-musique-service.component';
 import { ViewMediaServiceComponent } from './components/view-media-service/view-media-service.component';
@@ -12,6 +12,7 @@ import { ViewTraiteurServiceComponent } from './components/view-traiteur-service
 import { ViewServiceTraiteurServiceComponent } from './components/view-service-traiteur-service/view-service-traiteur-service.component';
 import {CommonModule} from "@angular/common";
 import { ViewAllreservationComponent } from './components/view-allreservation/view-allreservation.component';
+import { ViewAllFermetureComponent } from './components/view-all-fermeture/view-all-fermeture.component';
 
 
 
@@ -26,6 +27,7 @@ import { ViewAllreservationComponent } from './components/view-allreservation/vi
     ViewTraiteurServiceComponent,
     ViewServiceTraiteurServiceComponent,
     ViewAllreservationComponent,
+    ViewAllFermetureComponent,
   ],
   imports: [
     ProviderRoutingModule,

@@ -6,5 +6,7 @@ export interface MediaProviderDashBoardDTO {
   is_video?:boolean;
   do_album?:boolean;
   do_souvenir?:boolean;
+  presentation?:string;
+
 
 }

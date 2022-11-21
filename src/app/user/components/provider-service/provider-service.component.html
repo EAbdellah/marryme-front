@@ -56,8 +56,7 @@
       <mat-tab-group [selectedIndex]="selected.value"
                      (selectedIndexChange)="selected.setValue($event)"
                      #tabGroup
-                     (selectedTabChange)="tabChanged($event)"
-        >
+                     (selectedTabChange)="tabChanged($event)">
 
         <mat-tab [label]="'Description'" >
           <div class="example-large-box mat-elevation-z4" >

@@ -34,7 +34,9 @@ export class ViewTraiteurServiceComponent implements OnInit {
       do_vegan: [{value: false, disabled: false}, Validators.required],
       do_fish: [{value: false, disabled: false}, Validators.required],
       do_meat: [{value: false, disabled: false}, Validators.required],
-      do_vegetarian: [{value: false, disabled: false}, Validators.required]
+      do_vegetarian: [{value: false, disabled: false}, Validators.required],
+      presentation:[{value: false, disabled: false}, Validators.required]
+
     });
 
   }
@@ -47,6 +49,7 @@ export class ViewTraiteurServiceComponent implements OnInit {
       this.form.patchValue({'do_fish': data.do_fish})
       this.form.patchValue({'do_meat': data.do_meat})
       this.form.patchValue({'do_vegetarian': data.do_vegetarian})
+      this.form.patchValue({'presentation': data.presentation})
 
     });
   }
