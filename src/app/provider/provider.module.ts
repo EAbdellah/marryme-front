@@ -19,7 +19,6 @@ import { ViewAllFermetureComponent } from './components/view-all-fermeture/view-
 @NgModule({
   declarations: [
     DashbordProviderComponent,
-    RegisterProviderComponent,
     ViewSalleServiceComponent,
     ViewMusiqueServiceComponent,
     ViewMediaServiceComponent,

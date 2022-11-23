@@ -39,4 +39,24 @@
   margin-left: 5%;
 }
 
+.div-flex-image{
+  width: 35%;
+  height: auto;
 
+}
+#div-flex-container{
+  width: 100%;
+  justify-content:space-between;
+  align-items: flex-end;
+  //min-height: 70%;
+}
+.div-flex-image{
+  width: 40%;
+  height: auto;
+
+}
+#div-flex-center{
+  //width: 1000px;
+  width: 90%;
+
+}

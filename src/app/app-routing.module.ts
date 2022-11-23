@@ -16,12 +16,23 @@ const routes: Routes = [
   { path: 'redirectRegistration', component: RedirectRegistrationComponent},
   {path: 'register/customer', component: RegisterFormComponent },
   {path: 'register/provider', component: RegisterProviderComponent },
-  { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule),canActivate: [AuthenticationGuard,UserGuardGuard]},
-  { path: 'provider', loadChildren: () => import('./provider/provider.module').then(m => m.ProviderModule),canActivate: [AuthenticationGuard,ProviderGuardGuard] },
-  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),canActivate: [AuthenticationGuard,AdminGuardGuard] },
+
+  { path: 'user',
+    loadChildren: () => import('./user/user.module').then(m => m.UserModule),
+    canActivate: [AuthenticationGuard,UserGuardGuard]},
+
+  { path: 'provider',
+    loadChildren: () => import('./provider/provider.module').then(m => m.ProviderModule),
+    canActivate: [AuthenticationGuard,ProviderGuardGuard] },
+
+  { path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
+    canActivate: [AuthenticationGuard,AdminGuardGuard] },
+
   { path: 'allService', component: AllServicesListComponent},
-  {path:' ', redirectTo:'AllServicesListComponent'}
-  // {path:'**', redirectTo:'login'}
+  { path: '', component: AllServicesListComponent},
+  // {path:' ', redirectTo:'AllServicesListComponent'}
+  {path:'**', redirectTo:'allService'}
 
 ];
 

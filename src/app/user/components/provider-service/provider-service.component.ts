@@ -102,8 +102,8 @@ export class ProviderServiceComponent implements AfterViewInit, OnInit {
     console.log('tabChangeEvent => ', tabChangeEvent.index);
     console.log('index => ', tabChangeEvent.index);
     console.log('index => ', tabChangeEvent.tab.textLabel);
-    console.log(this.formules[tabChangeEvent.index-1]);
-    this.basicPrice = this.formules[tabChangeEvent.index-1]?.prix
+    console.log(this.formules[tabChangeEvent.index]);
+    this.basicPrice = this.formules[tabChangeEvent.index]?.prix
     this.price=this.getPrice()
 
   }
@@ -129,7 +129,7 @@ export class ProviderServiceComponent implements AfterViewInit, OnInit {
   daySup(): number {
     if (typeof this.selected.value === "number") {
 
-      let index:number = this.selected.value -1;
+      let index:number = this.selected.value ;
 
       return this.sup = this.dayType().includes('ferier')? this.formules[index]?.supFerrier :
         this.val.includes('Samedi')?this.formules[index]?.supSamedi :
@@ -194,7 +194,7 @@ export class ProviderServiceComponent implements AfterViewInit, OnInit {
   onFinalize() {
 
       let formatDate  =this.chosingDate.split("/").reverse().join("-");
-      let formulID =  this.formules[this.selected.value!-1]?.formuleID;
+      let formulID =  this.formules[this.selected.value!]?.formuleID;
       let file = null
 
        console.log(formatDate);

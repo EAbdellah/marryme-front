@@ -4,6 +4,7 @@ import {confirmEqualValidator} from "../../../user/validators/confirm-equal.vali
 import {AtLeast} from "../../../user/validators/at-least.valisator";
 import {map, Observable, tap} from "rxjs";
 import {ProviderService} from "../../../provider/services/provider.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register-provider',
@@ -47,7 +48,7 @@ export class RegisterProviderComponent implements OnInit {
 
   isEditable = true;
 
-  constructor(private formBuilder: FormBuilder, private providerService:ProviderService) { }
+  constructor(private formBuilder: FormBuilder, private providerService:ProviderService, private router:Router) { }
 
   ngOnInit(): void {
     this.initFormControls();
@@ -163,13 +164,14 @@ export class RegisterProviderComponent implements OnInit {
         this.loading = false;
         if (saved) {
           this.resetForm();
+
         } else {
           console.error('Echec de l\'enregistrement');
         }
       })
     ).subscribe();
 
-    // this.router.navigateByUrl("/login")
+    this.router.navigateByUrl("/login")
     console.log(this.mainForm)
   }
 

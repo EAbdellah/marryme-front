@@ -61,7 +61,7 @@
       <div class="form-row">
         <mat-form-field appearance="fill">
           <mat-label>Code postal</mat-label>
-          <input type="text"  matInput formControlName="postalCode">
+          <input type="text" type="number"  matInput formControlName="postalCode">
           <mat-error>ce champ est requis</mat-error>
         </mat-form-field>
 
@@ -106,13 +106,13 @@
 
         <mat-form-field appearance="fill">
           <mat-label>Nom de l'entreprise</mat-label>
-          <input autocomplete="name" type="text" matInput formControlName="name">
+          <input autocomplete="name"  type="text" matInput formControlName="name">
           <mat-error>ce champ est requis</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
           <mat-label>N Entreprise</mat-label>
-          <input autocomplete="none" type="text" matInput formControlName="n_entreprise">
+          <input autocomplete="none" type="number" maxlength="10" minlength="10" matInput formControlName="n_entreprise">
           <mat-error>ce champ est requis</mat-error>
         </mat-form-field>
       </div>

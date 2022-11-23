@@ -9,13 +9,10 @@ import {ReservationListClientComponent} from "./components/reservation-list-clie
 import {PaypalPaymentComponent} from "./components/paypal-payment/paypal-payment.component";
 
 const routes: Routes = [
-  // { path: 'login', component: LoginComponent},
   { path: 'payment', component: PaypalPaymentComponent},
   { path: 'reservations', component: ReservationListClientComponent},
-  // { path: 'marryme', component: HomeComponent},
   {path:':id', component: ProviderServiceComponent},
   { path: '', component: AllServicesListComponent}
-
 
 ];
 

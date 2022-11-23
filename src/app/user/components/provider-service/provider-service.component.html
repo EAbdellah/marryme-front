@@ -58,27 +58,96 @@
                      #tabGroup
                      (selectedTabChange)="tabChanged($event)">
 
-        <mat-tab [label]="'Description'" >
-          <div class="example-large-box mat-elevation-z4" >
-            <img mat-card-image
-                 src="https://provins.net/wp-content/uploads/2020/07/chateau-de-la-motte-tilly-provins-photo-cmn-6-880x562.jpg"
-                 alt="Photo of a Shiba Inu">
-            <div class="description-div">
-              voici une decription
-            </div>
-          </div>
-        </mat-tab>
+<!--        <mat-tab [label]="'Description'" >-->
+<!--          -->
+<!--          <div class="div-flex-image" >-->
+<!--            <img mat-card-image-->
+<!--                 src="https://provins.net/wp-content/uploads/2020/07/chateau-de-la-motte-tilly-provins-photo-cmn-6-880x562.jpg"-->
+<!--                 alt="Photo of a Shiba Inu">-->
+<!--            <div class="description-div">-->
+<!--              voici une decription-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </mat-tab>-->
 
       <mat-tab *ngFor="let formule of service?.formules; index as index; " [label]="'Formule '+ (index+1)" >
-          <div class="example-large-box mat-elevation-z4" >
-            <img mat-card-image
-                 src="https://provins.net/wp-content/uploads/2020/07/chateau-de-la-motte-tilly-provins-photo-cmn-6-880x562.jpg"
-                 alt="Photo of a Shiba Inu">
-            <div class="description-div">
-              Nom: {{formule.nom}}
-            </div>
+
+
+        <mat-card class="home-card">
+          <div id="div-flex-container">
+
+            <mat-card-title-group class="home-card-content">
+              <div class="div-flex-image" *ngIf="service.type == 'SalleEntity'">
+                <img  class="image"  src="https://www.infinity-weddingsandevents.com/wp-content/uploads/2020/09/luxury-castle-wedding-1400x931.jpg">
+              </div>
+              <div class="div-flex-image" *ngIf="service.type == 'ServiceTraiteurEntity'">
+                <img  class="image"  src="https://static.wixstatic.com/media/ebdd3db7cd2e4376a6634fcf005a0b31.jpg/v1/fill/w_560,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/ebdd3db7cd2e4376a6634fcf005a0b31.jpg">
+              </div>
+              <div class="div-flex-image" *ngIf="service.type == 'MusiqueEntity'">
+                <img  class="image"  src="https://richmondweddings.com/wp-content/uploads/2019/05/Depositphotos_124865894_s-2019.jpg">
+              </div>
+              <div class="div-flex-image" *ngIf="service.type == 'MakeUpAndHairEntity'">
+                <img  class="image"  src="https://cdn0.weddingwire.com/article/1043/3_2/960/jpg/3401-1-laura-memory-photography-videography.jpeg">
+              </div>
+              <div class="div-flex-image" *ngIf="service.type == 'TraiteurEntity'">
+                <img  class="image"  src="https://www.mariage-anniversaire.be/wp-content/uploads/2021/08/service-traiteur.jpg">
+              </div>
+              <div class="div-flex-image" *ngIf="service.type == 'MediaEntity'">
+                <img  class="image"  src="https://photoallstar.com/wp-content/uploads/2021/06/do-wedding-photographers-shoot-in-raw.jpg">
+              </div>
+
+              <p style="margin-left:2%"></p>
+
+              <div id="div-flex-center">
+                <mat-card-title matLine>  {{formule.nom}} </mat-card-title>
+
+                <mat-card-content matLine>
+                  <h6 id="description">
+                    {{formule.description}}                </h6>
+                  <!--            <span>  {{service.desciption}} </span>-->
+                </mat-card-content>
+                <div style="display:flex; flex-wrap:  wrap ;">
+
+
+
+
+                </div>
+
+              </div>
+
+
+            </mat-card-title-group>
+
           </div>
+        </mat-card>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--          <div class="example-large-box mat-elevation-z4" >-->
+<!--            <img mat-card-image-->
+<!--                 src="https://provins.net/wp-content/uploads/2020/07/chateau-de-la-motte-tilly-provins-photo-cmn-6-880x562.jpg"-->
+<!--                 alt="Photo of a Shiba Inu">-->
+<!--            <div class="description-div">-->
+<!--              Nom: {{formule.nom}}-->
+<!--            </div>-->
+<!--            <div class="description-div">-->
+<!--              Description: {{formule.description}}-->
+<!--            </div>-->
+<!--          </div>-->
+
         </mat-tab>
+
       </mat-tab-group>
 
 

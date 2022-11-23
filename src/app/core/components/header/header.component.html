@@ -1,14 +1,17 @@
 
 
 <mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center">
+
+
   <span>
     <button mat-button routerLink="/allService">{{title}}
       <mat-icon>home</mat-icon>
     </button>
 <!--    <button mat-button routerLink="/"></button>-->
   </span>
-  <span class="example-spacer"></span>
 
+
+  <span class="example-spacer"></span>
 
   <div fxLayout="row" fxShow="false" fxShow.gt-sm>
     <button mat-button routerLink="/login" *ngIf="!isloged()">
@@ -16,7 +19,8 @@
       Login
     </button>
 
-    <button mat-button routerLink="user/register" *ngIf="!isloged()" >
+
+    <button mat-button routerLink="/redirectRegistration" *ngIf="!isloged()" >
       <mat-icon>power_settings_new</mat-icon>
       register
     </button>

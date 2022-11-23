@@ -15,7 +15,6 @@ import { PaypalPaymentComponent } from './components/paypal-payment/paypal-payme
 
 @NgModule({
   declarations: [
-    RegisterFormComponent,
     LoginComponent,
     HomeComponent,
     AllServicesListComponent,

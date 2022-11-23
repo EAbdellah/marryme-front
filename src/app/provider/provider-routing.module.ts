@@ -12,7 +12,7 @@ import {RegisterProviderComponent} from "../core/components/register-provider/re
 
 const routes: Routes = [
 
-  { path: 'register', component: RegisterProviderComponent},
+  // { path: 'register', component: RegisterProviderComponent},
   { path: '', component: DashbordProviderComponent}
 
 

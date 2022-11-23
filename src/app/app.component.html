@@ -1,8 +1,11 @@
 <mat-sidenav-container fullscreen>
-
+<div style="    min-height:100%; position:relative;
+                                              padding-bottom:[footer-height] ">
 <app-header></app-header>
 <div class="main-content">
   <router-outlet></router-outlet>
 </div>
-<app-footer></app-footer>
-</mat-sidenav-container>
+  </div>
+  <app-footer></app-footer>
+</mat-sidenav-container >
+

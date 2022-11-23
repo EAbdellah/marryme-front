@@ -50,7 +50,7 @@ export class ReservationListClientComponent implements OnInit {
   sendInfo(reservation: SingleReservation) {
 
     this.userService.sendReservation(reservation)
-    this.router.navigateByUrl("marryme/payment");
+    this.router.navigateByUrl("user/payment");
 
   }
 }

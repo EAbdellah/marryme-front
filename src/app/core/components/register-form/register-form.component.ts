@@ -16,10 +16,8 @@ export class RegisterFormComponent implements OnInit {
 
   loading =false;
   mainForm!: FormGroup;
-
   personalInfoForm!: FormGroup;
   contactPreferenceCtrl!: FormControl;
-  // phoneCtrl!: FormControl;
 
   emailForm!: FormGroup;
   emailCtrl!: FormControl;

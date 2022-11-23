@@ -6,11 +6,18 @@ import {HttpClientModule} from "@angular/common/http";
 import {HeaderComponent} from "./components/header/header.component";
 import { FooterComponent } from './components/footer/footer.component';
 import { RedirectRegistrationComponent } from './components/redirect-registration/redirect-registration.component';
+import {RegisterProviderComponent} from "./components/register-provider/register-provider.component";
+import {RegisterFormComponent} from "./components/register-form/register-form.component";
 
 
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, RedirectRegistrationComponent
+  declarations: [HeaderComponent,
+    FooterComponent,
+    RedirectRegistrationComponent,
+    RegisterProviderComponent,
+    RegisterFormComponent
+
   ],
   imports: [
     CommonModule,
@@ -21,7 +28,8 @@ import { RedirectRegistrationComponent } from './components/redirect-registratio
     exports: [
         HeaderComponent,
         FooterComponent,
-        RedirectRegistrationComponent
+        RedirectRegistrationComponent,
+
     ]
 })
 export class CoreModule { }
